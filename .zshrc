@@ -96,5 +96,4 @@ alias cc='cdc; f8; cd docs; make clean; make html'
 alias awsh='ssh -i ~/.ssh/crissman_aws_virginia.pem ubuntu@$AWS' 
 alias awsf='ssh -N -f -L localhost:8888:localhost:8889 ubuntu@$AWS'
 
-export GITTOKEN=f3e4159cd6edc73caaebbc935d105f3498ee8708
 alias config='/usr/local/bin/git --git-dir=/Users/crissman/.cfg/ --work-tree=/Users/crissman'
