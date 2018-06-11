@@ -88,7 +88,7 @@ export PATH="/Users/crissman/anaconda3/bin:$PATH"
 
 alias cdg='cd ~/Documents/Github'
 alias ag='alias | grep'
-alias scr='vim ~/scratch.txt'
+alias scr='vim ~/Documents/scratch.txt'
 alias cdc='cd ~/Documents/Github/Chainer'
 alias zrc='vim ~/.zshrc; source ~/.zshrc'
 alias f8='flake8'
