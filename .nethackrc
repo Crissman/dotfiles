@@ -1,0 +1,1749 @@
+#
+###########################
+# Scorchgeek's NetHackrc  #
+# Version 1.0.3           #
+# Last updated 2014-02-05 #
+###########################
+#
+##################
+# Latest Changes #
+##################
+# 2014-02-05: Fix a script bug that was preventing changes from being saved. Add MSGTYPE entry.
+#             Changes to STATUSCOLORS in beta testing.
+# 2013-07-15: Add MSGTYPE for vibrating square, color forgotten spells magenta
+# 2013-02-18: Bound 'v' to #loot.
+# 2012-10-28: Added NAO's new option hilite_hidden_stairs
+# 2012-07-26: Added statuscolors, as HPmon no longer works at all.
+# 2012-04-11: Corrected some menucolors regexes that failed to highlight on certain occasions
+#             at the suggestion of Nalzok.
+# 2012-05-12: Added pickup_thrown since it has been added to NAO.
+#
+########################
+# Using My Config File #
+########################
+#
+# Obviously, I took the time to comment and index my config file in the hopes
+# that it will be useful to other people, perhaps especially those who are new
+# to NetHack and the wonders of custom RC files.
+#
+# If you want to just copy this file and start playing, you can certainly do that,
+# but you probably want to customize it a little bit first. Here's a checklist:
+# 1) Go to section 11, Disputed, and check to make sure you like my choices there.
+# 2) Go to section 4, Autopickup, and make sure you're happy with what you're going to be picking up.
+# 3) Go to section 14, Interface/Display, and make sure you like my choices there.
+# 4) Go to section 12, Cosmetic/Names, and put in your favorite names there.
+# 5) Go to section 5, MSGTYPE, and play around with that. You'll probably want to go back there and add
+#    things as you play.
+#
+# Here's a second table of contents for following this checklist.
+# In vim, position the cursor over the tag below and press #, or search backwards on the tag, to jump to the location.
+# Press ^O to come back here.
+# +----------------------------------------------------------------------------------+
+# |   Step 1   |     |  Step 2  |     |  Step 3   |     |  Step 4   |     | Step 5   |
+# |------------|     |----------|     |-----------|     |-----------|     |----------|
+# | (vimsec11  |     | (vimsec4 |     | (vimsec14 |     | (vimsec12 |     | (vimsec5 |
+# +----------------------------------------------------------------------------------+
+#
+# That's probably all you need to do to get started; of course, you'll want to change some other stuff
+# as well, but there's no need to do it until you see a reason.
+#
+# Other people will be better served by reading through and copying lines they like, rather than
+# copying the entire file and working from there. That works well too--it's a large part of how I compiled
+# my configuration.
+#
+# Please contact me with questions and errors with the config file.
+# soren.bjornstad@gmail.com
+# scorchgeek on Freenode
+#
+############
+# Contents #
+############
+#
+# This document is over 700 lines, so it's a bit of a pain to find things. For
+# that reason, this document is indexed using (vimsec[xy] tags. The 'vim' comes
+# from the fact that you can jump to the reference in vim just by moving to the
+# index line and typing $* (you can return with ^O). If you're using a
+# different text editor, you can use its "jump to next occurrence" feature if
+# there is one, or just run a search for said tag instead.
+#
+# ----------------------------------------------------------------------------------------------------------
+#  SECTION        TITLE                               DESCRIPTION                                     TAG
+# ----------------------------------------------------------------------------------------------------------
+# Section 1: Vanilla Options : Stuff like color, DECgraphics, messagewindow, etc.                : (vimsec1
+# Section 2: NAO Patches     : Stuff like sortloot, showbuc, disclose, etc.                      : (vimsec2
+# Section 3: Menu Colors     : Options for making your menus look all pretty.                    : (vimsec3
+# Section 4: Autopickup      : Options for saving your , finger from falling off.                : (vimsec4
+# Section 5: MSGTYPE         : Options for hiding spam and stopping you in dangerous situations. : (vimsec5
+# ----------------------------------------------------------------------------------------------------------
+#
+# junethack scorchgeek
+#
+##############################
+# Section 1: Vanilla Options #
+##############################
+# [vimsec1]
+#
+#---------------------------------
+#| Contents of "Vanilla Options" |
+#-------------------------------------------------------------------------------------------------
+# Disputed          : Very personal settings.                                          : (vimsec11
+# Cosmetic/Names    : Pet and fruit names. No effect on gameplay.                      : (vimsec12
+# Status Line       : Get more useful information on the statusbar.                    : (vimsec13
+# Interface/Display : Little display tweaks; also things like pushweapon and autodig.  : (vimsec14
+# ------------------------------------------------------------------------------------------------
+#
+#------------
+#| Disputed |
+#------------
+# [vimsec11]
+# This section is for the convenience of people using my config file: very personal settings.
+#
+# I love vi-keys. If you don't, set this to 1 to use your numpad.
+OPTIONS=number_pad:0
+#
+# If DEC doesn't work well on your terminal, change this to IBMgraphics or comment it out.                       
+OPTIONS=symset:IBMGraphics_2,roguesymset:RogueEpyx
+#
+# There is no particular rhyme or reason behind this packorder except I think it makes sense. Feel free to change.
+# (Packorder is the order in which different item classes are displayed in your inventory.)
+OPTIONS=packorder:)[(?/=%!+"*`0_
+#
+#------------------
+#| Cosmetic/Names |
+#------------------
+# [vimsec12]
+# You can set the following options to whatever you want. They have little effect on actual gameplay.
+#
+# My, that was a yummy explosion!
+OPTIONS=fruit:dried figs
+#
+# Well-known and absurdly good NetHack players.
+OPTIONS=name:Splarticus
+OPTIONS=catname:Rufus
+OPTIONS=dogname:Cotton
+OPTIONS=horsename:Silver
+#
+#------------------------
+#| Status Line Settings |
+#------------------------
+# [vimsec13]
+#
+# If you need more space on the status bar, turn off showexp and showscore, but I do this in-game when needed.
+# Time is just a no-brainer--you need to be able to see the turncount.
+OPTIONS=showexp,showscore,time
+#
+#------------------------------
+#| Interface/Display Settings |
+#------------------------------
+# [vimsec14]
+# All sorts of different stuff that only sort of fits in a category together.
+#
+# These are no-brainers.
+OPTIONS=color,hilite_pet,safe_pet
+#
+# This needs to be turned off in-game when twoweaponing, but most of the time I leave it on, so it's the default.     
+OPTIONS=pushweapon
+#
+# Sparkle is a really annoying "feature" which slows down your game immensely. Turn it off.
+OPTIONS=!sparkle
+#
+# Gets annoying when a pick or mattock is your main weapon, but most of the time it's ok, so my default.                           
+OPTIONS=autodig
+#
+# The default on NAO; displays a window of messages instead of one at a time.
+OPTIONS=msg_window:reversed,msghistory:1000
+#
+# Monster letters. The only change from default is that ghosts are 8 instead of a space.
+# CCL Not compiled: OPTIONS=monsters:abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@8'&;:~]
+#
+# Doing Sokoban with boulders as ` is just a pain. Most experienced players have changed this.
+OPTIONS=boulder:0
+#
+# Command help: Prevents a help message from appearing when you try to quiver things, and removes unnecessary prompts.
+OPTIONS=suppress_alert:3.4.3
+OPTIONS=!cmdassist
+#
+##########################
+# Section 2: NAO Patches #
+##########################
+# [vimsec2]
+#
+#------------------------------
+#| Contents of "NAO Patches"  |
+#------------------------------------------------------------------------------------------------------------------
+# Disclose          : What prompts appear at the end of the game at DYWYPI time.                        : (vimsec21
+# Speedrunning      : A set of options to be commented out/uncommented when doing a realtime speedrun.  : (vimsec22
+# Miscellany        : Random stuff.                                                                     : (vimsec23
+# Curses Interface  : Options for using the curses interface. See the section for more.                 : (vimsec24
+# Statuscolors      : For coloring things on the status bar, like HP and hunger status.                 : (vimsec25
+# -----------------------------------------------------------------------------------------------------------------
+#
+#------------
+#| Disclose |
+#------------
+# [vimsec21]
+# Disclose technically isn't an NAO option, but showborn is related and it is.
+#
+#  *** Mini-documentation:
+#  At the end of the game, what prompts and information should be displayed?
+#  y means prompt with default of yes. n means prompt with default of no. You can also use + and - for always/never show.
+#  i is inventory, a is attributes, v is killed monsters, g is genocided/extinct, c is conduct.
+OPTIONS=disclose:+i +a +v +g +c +o
+#
+# On NAO, at the killed monsters prompt, tells you how many monsters were created as well as how many were killed.		       	     		   
+# OPTIONS=showborn # CCL not compiled
+#
+#
+#----------------
+#| Speedrunning |
+#----------------
+# [vimsec22]
+# I like realtime speedruns (as of this writing I have the NAO speed record, which still sucks in comparison
+#                            to records on other servers).
+# These options are slight tweaks that are handy to make when doing speedruns.
+#
+# This option should be commented out in speedruns.
+# CCL covered below with paranoid options : OPTIONS=paranoid_hit
+#
+# These options should be uncommented in speedruns. (These are not technically NAO patch options either.)
+#OPTIONS=nomail
+#OPTIONS=align:neutral,race:gnome,role:healer
+#
+#--------------
+#| Miscellany |
+#--------------
+# [vimsec23]
+# Stuff that doesn't fit anywhere else.
+#
+# Sortloot: Puts things in alphabetical order.
+OPTIONS=sortloot:full
+#
+# Makes you type 'yes' instead of 'y' when executing #quit. If you're trying to startscum a lot, you may want to turn this off.
+OPTIONS=paranoid_confirmation:attack pray quit
+#
+# NetHack doesn't display 'uncursed' for certain objects by default; this forces it to do so.
+OPTIONS=!implicit_uncursed
+#
+# Colors the HP display. Helps you avoid deaths due to not paying attention to your HP level.            
+# CCL not compiled
+#
+# Show red background on tiles that have stairs with objects over them.
+# CCL not compiled: OPTIONS=hilite_hidden_stairs
+#
+# I loot things a lot, and the 'v' key is pretty much useless.
+# CCL not compiled: BINDINGS=v:loot
+#
+#--------------------
+#| Curses Interface |
+#--------------------
+# [vimsec24]
+# If you're trying to use the curses interface, uncommenting these lines should give you a good start at working out config.
+# If you're not trying to use the curses interface, ignore this section.
+# See http://nethackwiki.com/wiki/Curses_interface for information about the curses interface.
+#
+#OPTIONS=windowtype:curses
+#OPTIONS=IBMgraphics
+#OPTIONS=cursesgraphics
+#OPTIONS=align_message:right
+#OPTIONS=align_status:right
+#OPTIONS=term_cols:110
+#OPTIONS=term_rows:32 
+#OPTIONS=windowborders:2
+OPTIONS=!splash_screen
+#OPTIONS=petattr:ui
+#OPTIONS=guicolor
+#OPTIONS=mouse_support
+#
+##########################
+# Section 3: Menu Colors #
+##########################
+# [vimsec3]
+#
+# CHANGES:
+#  2011-03-16: Fixed two bugs--unidentified armor was the wrong color, and highly enchanted artifacts lost the artifact green color.
+#
+#-----------------------------
+#| Contents of "Menu Colors" |
+#----------------------------------------------------------------------------------------------------------------------------------
+# Information           : What it sounds like. Yep.                                                                     : (vimsec31
+# Force Colors          : Making stuff the color you want in-game with names.                                           : (vimsec32
+# B/U/C Status          : Easily pick out cursed and blessed items. And water.                                          : (vimsec33
+# Fully Enchanted Items : Apply yellow to stuff you might not be safe to enchant more.                                  : (vimsec34
+# Artifacts             : Apply green to all artifacts, and orange to invo artifacts.                                   : (vimsec35
+# Gems                  : Distinguish soft and hard gems.                                                               : (vimsec36
+# Especially Good Stuff : Put in magenta or light blue particularly good items.                                         : (vimsec37
+# Garbage               : Red and dim worthless stuff (mostly based on names) and highlight loadstones.                 : (vimsec38
+# Whoops!               : Terminal blue is the most stand-out-y color; identifies stuff that blows up when you BoH it.  : (vimsec39
+# Spell Fail Rates      : From Eidocolors. What it sounds like.                                                         : (vimsec3A
+# #enhance              : From Eidocolors. Bold things that can be enhanced.                                            : (vimsec3B
+# Containers            : Make sure container #loot messages don't have colors.                                         : (vimsec3C
+# ---------------------------------------------------------------------------------------------------------------------------------
+#
+#-------------------------
+#| Information/Changelog |
+#-------------------------
+# [vimsec31]
+# You can't say menucolors in your nethackrc without writing "Eidocolors" somewhere.
+# If you don't know about them, they're a set of menucolors designed by Eidolos, a fairly well-known NetHack person.
+# Here's the original link: http://alt.org/nethack/userdata/E/Eidolos/Eidolos.nh343rc
+#
+# Partly because I had some of my own ideas and partly because I'm a nonconformist, I got tired of using them after a while.
+# So these are my own set of colors. I started with the regexes in Eidocolors and then swapped them around a bit, removed some,
+# and added some of my own. Some sections were kept, and are noted as such.
+#
+# And this doesn't fit under "information," but there's nowhere else to put it: turn menucolors on.
+OPTIONS=menucolors
+#
+#----------------
+#| Force Colors |
+#----------------
+# [vimsec32]
+# Escape codes for naming items to make them a specific color. I've never used this except in testing, but it could come in handy.
+#
+MENUCOLOR="\{R\}"=red
+MENUCOLOR="\{B\}"=blue
+MENUCOLOR="\{C\}"=cyan
+MENUCOLOR="\{G\}"=green
+MENUCOLOR="\{Y\}"=yellow
+MENUCOLOR="\{[MP]\}"=magenta
+MENUCOLOR="\{O\}"=orange
+MENUCOLOR="\{W\}"=white
+MENUCOLOR="\{L\}"=black
+MENUCOLOR="\{y\}"=gray
+MENUCOLOR="\{g\}"=lightgreen
+MENUCOLOR="\{b\}"=lightblue
+MENUCOLOR="\{[mp]\}"=lightmagenta
+MENUCOLOR="\{c\}"=lightcyan
+MENUCOLOR="\{N\}"=none
+MENUCOLOR="\{X\}"=bold
+MENUCOLOR="\{x\}"=dim
+MENUCOLOR="\{U\}"=underline
+MENUCOLOR="\{I\}"=inverse
+MENUCOLOR="\{K\}"=blink
+#
+#----------------
+#| B/U/C Status |
+#----------------
+# [vimsec33]
+#
+MENUCOLOR=" !c"=black
+MENUCOLOR=" uncursed| UC?($| )"=black
+MENUCOLOR=" blessed| B($| )"=cyan
+MENUCOLOR=" cursed| C($| )"=red
+#
+# water
+MENUCOLOR=" holy water"=cyan&bold
+MENUCOLOR=" blessed clear potion"=cyan&bold
+MENUCOLOR=" blessed potions? called water"=cyan&bold
+MENUCOLOR=" clear potions? named (holy|blessed|B)($| )"=cyan&bold
+MENUCOLOR=" potions? of water named (holy|blessed|B)($| )"=cyan&bold
+MENUCOLOR=" potions? called water named (holy|blessed|B)($| )"=cyan&bold
+MENUCOLOR=" unholy water"=red&bold
+MENUCOLOR=" cursed clear potion"=red&bold
+MENUCOLOR=" cursed potions? called water"=red&bold
+MENUCOLOR=" potions? called water named (unholy|cursed|C)($| )"=red&bold
+#
+#----------------------------------------------
+#| Fully enchanted items (or possibly at max) |
+#----------------------------------------------
+# [vimsec34]
+# This used to be with "ascension kit," but because later items take precedence,
+# I had to move it earlier.
+# I suppose this could be combined into one regex, but it's a bit clearer like this.
+#
+MENUCOLOR="\+4"=orange
+MENUCOLOR="\+5"=orange
+MENUCOLOR="\+6"=orange
+MENUCOLOR="\+7"=orange
+#
+#-------------
+#| Artifacts |
+#-------------
+# [vimsec35]
+# All artifacts get green. Green takes precedence over fully enchanted.
+#
+#lawful
+MENUCOLOR=" (Demonbane|Excalibur|Grayswandir|Snickersnee|Sunsword)"=green
+MENUCOLOR=" (Orb of Detection|Sceptre of Might|Magic Mirror of Merlin|Mitre of Holiness|Tsurugi of Muramasa)"=green
+#
+#neutral
+MENUCOLOR=" (Cleaver|Giantslayer|Magicbane|Mjollnir|Vorpal Blade)"=green
+MENUCOLOR=" (Heart of Ahriman|Staff of Aesculapius|Eyes of the Overworld|Platinum Yendorian Express Card|Orb of Fate|Eye of the Aethiopica)"=green
+#
+#chaotic
+MENUCOLOR=" (Grimtooth|Orcrist|Sting|Stormbringer)"=green
+MENUCOLOR=" (Longbow of Diana|Master Key of Thievery)"=green
+#
+#unaligned
+MENUCOLOR=" (Dragonbane|Fire Brand|Frost Brand|Ogresmasher|Trollsbane|Werebane)"=green
+#
+#invocation
+MENUCOLOR=" (Bell of Opening|silver bell|Candelabrum of Invocation|candelabrum|Book of the Dead|papyrus spellbook)"=orange
+#
+#the whole reason you're playing this stupid game
+MENUCOLOR=" Amulet of Yendor named"=orange
+#
+#--------
+#| Gems |
+#--------
+# [vimsec36]
+#
+#soft
+MENUCOLOR=" ([0-9]+|an?|gems? .*) (uncursed |cursed |blessed )?(dilithium|opal|garnet|jasper|agate|jet|obsidian|jade|citrine|chrysoberyl|amber|amethyst|fluorite|turquoise)(e?s)?( stones?| gems?| crystals?)?( named .*)?$"=brown
+#
+#hard
+MENUCOLOR=" ([0-9]+|an?|gems?.*) (uncursed |cursed |blessed )?(diamond|rub(y|ies)|jacinth|sapphire|black opal|emerald|topaz|aquamarine)(e?s)?( stones?| gems?)?( named .*)?$"=brown&bold
+#
+#unknown
+MENUCOLOR="gem called.*valuable"=brown
+#
+#-------------------------
+#| Especially Good Stuff |
+#-------------------------
+# [vimsec37]
+#
+MENUCOLOR=" bag .* holding"=magenta                                             
+MENUCOLOR=" luck(stone)?($| )"=magenta                                                                            
+MENUCOLOR=" wand .* tele(port(ation)?)?($| )"=magenta                            
+MENUCOLOR=" wand .* polymorph"=magenta                                           
+MENUCOLOR=" wand .* death"=magenta                                               
+MENUCOLOR=" gain level"=magenta
+#this doesn't color the #enhance unicorn
+MENUCOLOR=" unicorn horn[^[]*$"=magenta
+MENUCOLOR=" tinning kit"=magenta                                                 
+MENUCOLOR=" ring .* regen(eration)?($| )"=magenta                                
+MENUCOLOR=" ring .* conflict"=magenta                                            
+MENUCOLOR=" ring .* (FA|free action)($| )"=magenta                               
+MENUCOLOR=" ring .* (TC|teleport control)($| )"=magenta                          
+MENUCOLOR=" ring .* lev(itation)?($| )"=magenta                                  
+#
+# Bugfix: 'scroll.*', not 'scroll .*': Otherwise the coloring disappears on stacks.
+MENUCOLOR=" scroll.* genocide($| )"=magenta                                     
+MENUCOLOR=" scroll.* charging($| )"=magenta                                     
+MENUCOLOR=" scroll.* identify($| )"=magenta                                                                                            
+MENUCOLOR=" c(o|hi)ckatrice (corpse|egg)"=magenta 
+MENUCOLOR=" egg.* cockatrice"=magenta                
+MENUCOLOR=" stethoscope"=magenta 
+MENUCOLOR=" camera"=magenta 
+MENUCOLOR="tooled horn|fire horn|frost horn|horn .* (tooled|fire|frost)"=magenta 
+MENUCOLOR=" harp"=magenta 
+MENUCOLOR=" bugle"=magenta 
+MENUCOLOR=" flute"=magenta 
+MENUCOLOR=" potion.* healing"=magenta 
+MENUCOLOR=" amulet .* ref(lection)?($| )"=magenta 
+MENUCOLOR="BI"=magenta
+#
+# unidentified magic armor
+MENUCOLOR="piece of cloth|opera cloak|ornamental cope|tattered cape"=magenta
+MENUCOLOR="plumed helmet|etched helmet|crested helmet|visored helmet"=magenta
+MENUCOLOR="(old|padded|riding|fencing) gloves"=magenta 
+MENUCOLOR="(mud|buckled|riding|snow|hiking|combat|jungle) boots"=magenta 
+#
+# ascension kit armor
+MENUCOLOR=" dragon scale mail "=blue
+MENUCOLOR=" cloak of magic resistance "=blue
+MENUCOLOR=" MR "=blue
+MENUCOLOR="MI"=blue
+MENUCOLOR=" reflection "=blue
+MENUCOLOR=" #asc"=blue
+#
+# really awesome stuff
+MENUCOLOR=" wand .* wish(ing)?($| )"=lightblue   
+MENUCOLOR=" magic marker"=lightblue                                
+MENUCOLOR=" magic lamp|lamp .* magic"=lightblue 
+#
+# life-saving stuff
+MENUCOLOR=" full healing"=lightblue&bold
+MENUCOLOR=" amulet .* (life ?saving|LS)($| )"=lightblue&bold
+#
+#-----------
+#| Garbage |
+#-----------
+# [vimsec38]
+#
+MENUCOLOR=" load(stone)?($| )"=red&underline
+MENUCOLOR="(named|called).*worthless"=red&dim
+MENUCOLOR="crap"=red&dim
+MENUCOLOR="worthless piece"=red&dim
+#
+#-----------
+#| Whoops! |
+#-----------
+# [vimsec39]
+# "As you put the wand called make invisible inside, you are blasted by a magical explosion!"
+#
+MENUCOLOR=" bag .* tricks"=orange
+MENUCOLOR=" wand .*[^!]canc"=orange
+MENUCOLOR=" wand .* vanish"=orange
+MENUCOLOR=" wand .* Ev"=orange
+#name bags containing /oCancel
+MENUCOLOR=" named.* !! cancellation."=orange
+#
+#--------------------
+#| Spell Fail Rates |
+#--------------------
+# [vimsec3A]
+# verbatim eidocolors
+#
+MENUCOLOR=" 0%"=black
+MENUCOLOR=" [1-9]%"=cyan
+MENUCOLOR=" [12][0-9]%"=cyan
+MENUCOLOR=" [3-6][0-9]%"=orange
+MENUCOLOR=" 7[0-5]%"=orange
+MENUCOLOR=" 7[6-9]%"=orange
+MENUCOLOR=" 8[0-9]%"=orange
+MENUCOLOR=" 9[0-9]%"=red
+MENUCOLOR=" 100%"=red
+#
+# forgotten spells are magenta
+MENUCOLOR=" [0-9]\*"=magenta
+#
+#------------
+#| #enhance |
+#------------
+# [vimsec3B]
+# verbatim eidocolors, eidocolors credit itsblah
+# normal
+# MENUCOLOR="^ +[a-z -]+ +\\[(Unskilled|Basic|Skilled|Expert|Master|Grand Master)\\]$"=none
+# ready to enhance
+# MENUCOLOR="^ *[a-z] - +[a-z -]+ +\[(Unskilled|Basic|Skilled|Expert|Master|Grand Master)\\]$"=black
+# enhanceable if more skill slots
+# MENUCOLOR="^ +\\* +[a-z -]+ +\[(Unskilled|Basic|Skilled|Expert|Master|Grand Master)\\]$"=black
+# enhanceable if more potential
+# MENUCOLOR="^ +# +[a-z -]+ +\[(Unskilled|Basic|Skilled|Expert|Master|Grand Master)\\]$"=none
+#
+#--------------
+#| Containers |
+#--------------
+# [vimsec3C]
+# verbatim eidocolors
+MENUCOLOR=" is empty\. Do what\?"=none
+MENUCOLOR="Put something into "=none
+MENUCOLOR="Take something out of "=none
+#
+#########################
+# Section 4: Autopickup #
+#########################
+# [vimsec4]
+#
+# CHANGES:
+#  Scorchgeek: 2011-03-16: Removed >Garin, as I have no clue what it is and won't use it.
+#  Scorchgeek, 2011-05-30: Experimental == and =p options added.
+#  Scorchgeek, 2012-01-08: Several corrections, and merged my various config files.
+#
+#----------------------------
+#| Contents of "Autopickup" |
+#-----------------------------------------------------------------------------------------
+# Autopickup Mini-Spoiler : What it sounds like. Yep.                          : (vimsec41
+# Basic Settings          : Basic autopickup options.                          : (vimsec42
+# Automatically Pick Up   : Autopickup exceptions for things you want to have. : (vimsec43
+# Leave On The Ground     : Autopickup exceptions for crap you don't want.     : (vimsec44
+# ----------------------------------------------------------------------------------------
+#
+#---------------------------
+#| Autopickup Mini-Spoiler |
+#---------------------------
+# [vimsec41]
+# A lot of new players don't like autopickup. They say they always wind up picking up
+# stuff that they don't want. Some strategy guides even recommend not using it because
+# you end up picking up corpses and overburdening yourself.
+#
+# Well, that's bunk--as long as you configure autopickup properly. If you do configure
+# it properly, it:
+# * Saves you realtime.
+# * Saves you in-game time--, takes a turn, autopickup does not.
+# * Lets you do a rough sort of a lot of loot just by walking over stuff.
+# * Saves you from leaving stuff you wanted behind accidentally.
+#
+# So to configure autopickup correctly, what must you do?
+# 1) Set pickup_burden to Unencumbered. This way if you're going to be burdened you
+#    will be asked to confirm it first. Note that there is a bug that means that
+#    gold can be autopickupped and burden you in violation of this option, but
+#    you should really avoid being so close to the burden threshold that that's an issue.
+# 2) Set sensible autopickup types. You probably want wands, scrolls, rings, and amulets.
+#    You probably don't want weapons, armor, iron balls, and so on. You can also change
+#    this option in-game to match how the game is proceeding.
+# 3) Set sensible autopickup exceptions. This must be compiled into the game and is not
+#    by default, but all good public servers have the options. For examples of good and
+#    useful exceptions, see my config below.
+#
+# And then you should change options properly while using the game:
+# 1) Before walking into a shop, turn off autopickup using @. When you leave, turn it back on.
+# 2) When doing stash management, turn off autopickup using @. That way you can actually sort
+#    through stacks properly.
+# 3) If you are picking up a lot of stuff that you don't need (for example, spellbooks when
+#    you're a caveman), go into the options and turn that type or exception off. Types are
+#    stored with the savefile; exceptions annoyingly are not, so if you need to make a
+#    temporary exception you might still want to save and open your rcfile.
+# 4) If you don't want to pick up anything but exceptions (ascension run, for instance), set pickup_types
+#    to iron balls only, and use an exception (included in my config) that doesn't pick them up.
+#    You can't just set pickup_types to nothing; this will set autopickup to pick up *everything*.
+# 5) This seems like a lot of work, but if you give it a shot you'll soon find it's worth it.
+#
+# Finally, a note: You need to start a new game to see changes in autopickup_types. Saving
+# and restoring doesn't cut it. This is a frequently asked question in #nethack.
+#
+#------------------
+#| Basic Settings |
+#------------------
+# [vimsec42]
+#
+# Turn on autopickup.
+OPTIONS=autopickup
+#
+# Ask for confirmation before picking up stuff that slows you down.
+OPTIONS=pickup_burden:Unencumbered
+#
+# Don't pick up dumb things like armor (great, I really wanted those two plate mails), tools, and iron chains.
+# Occasionally you may want to change this in-game.
+OPTIONS=pickup_types:$?/+"=!%
+#
+# Pick up items you have thrown (e.g. daggers, arrows). This is an NAO patch.
+OPTIONS=pickup_thrown
+#
+#-------------------------
+#| Automatically Pick Up |
+#-------------------------
+# [vimsec43]
+#
+###
+### THE REAL AUTOPICKUP EXCEPTIONS
+###
+#
+# todo: 
+# * treat overlapping items (helmet vs. plumed helmet)
+# *Perhaps more characters should be admitted with <> autopickup, e. g. "thing called junk > named [junk".
+#
+# Pickup_types need to be non-empty, else everything will be picked up. 
+# If you only want to pick up exceptions, set it to iron balls and you're safe.
+#
+# This mostly covers items you cannot type-name. It's understood you name the rest.
+# In general, I don't end item-type lines with * because I want to be able 
+# to override that for individual items.
+#
+# pickup what I define during game (called or named). Individual names take precedence.
+autopickup_exception="<<"
+autopickup_exception="> named .*>"
+autopickup_exception="> called .*>.* named [^<]*$"
+#
+# empty stuff
+autopickup_exception=">:0)[^<]*$"
+AUTOPICKUP_EXCEPTION="> named empty[^<]*$"
+#AUTOPICKUP_EXCEPTION="> mail[^<]*$"
+#
+#
+# Really good weapons/armor. They should never fall in monsters' hands.
+AUTOPICKUP_EXCEPTION="< +6"
+AUTOPICKUP_EXCEPTION="< +7"
+AUTOPICKUP_EXCEPTION="< +8"
+AUTOPICKUP_EXCEPTION="< +9"
+#
+#
+# # A full list of possible items, including ones unidentified or felt blind.
+# # Better (documentation for) regular expressions in the autopickup code
+# # would greatly improve this section.
+# # Samurai, priests, and vegan/non-vegan eaters will have to improve this.
+# # You can dip stuff in holy/unholy water when blind, thus "a cursed scroll". 
+# # As a general principle, unidentified things can be autopicked up and named 
+# # right away. That will pick up only one of each type, which is great for 
+# # rings, harmful items, items with coinciding appearances, ...
+#
+# #storytelling items
+AUTOPICKUP_EXCEPTION=">cheap plastic imitation of the Amulet of Yendor[^<]*$"
+AUTOPICKUP_EXCEPTION=">cheap plastic imitation of the Amulet of Yendor named [^<]*$"
+AUTOPICKUP_EXCEPTION=">Amulet of Yendor[^<]*$"
+AUTOPICKUP_EXCEPTION="<Amulet of Yendor named "
+AUTOPICKUP_EXCEPTION="<Candelabrum of Invocation"
+AUTOPICKUP_EXCEPTION="<candelabrum"
+# AUTOPICKUP_EXCEPTION="<Bell of Opening"
+# AUTOPICKUP_EXCEPTION="<silver bell"
+AUTOPICKUP_EXCEPTION="<Book of the Dead"
+AUTOPICKUP_EXCEPTION="<papyrus spellbook"
+#
+# # Artifacts. 
+# # In general, I'm not a fan of death by blasting,
+# # but Sunsword/Demonbane get generated on archons that my pets might kill before I see.
+# # This isn't perfect protection from a blast - if blind, artifacts just show up as "a long sword" etc.
+# # lawful
+AUTOPICKUP_EXCEPTION="<Demonbane"
+AUTOPICKUP_EXCEPTION="<Sunsword"
+# AUTOPICKUP_EXCEPTION="<Excalibur"
+# AUTOPICKUP_EXCEPTION="<Grayswandir"
+# AUTOPICKUP_EXCEPTION="<Snickersnee"
+AUTOPICKUP_EXCEPTION=">Orb of Detection[^<]*$"
+# AUTOPICKUP_EXCEPTION="<Sceptre of Might"
+AUTOPICKUP_EXCEPTION=">Magic Mirror of Merlin[^<]*$"
+# AUTOPICKUP_EXCEPTION="<Mitre of Holiness"
+# AUTOPICKUP_EXCEPTION="<Tsurugi of Muramasa"
+# # neutral
+# AUTOPICKUP_EXCEPTION="<Cleaver"
+# AUTOPICKUP_EXCEPTION="<Giantslayer"
+AUTOPICKUP_EXCEPTION="<Magicbane"
+# AUTOPICKUP_EXCEPTION="<Mjollnir"
+# AUTOPICKUP_EXCEPTION="<Vorpal Blade"
+AUTOPICKUP_EXCEPTION=">Heart of Ahriman[^<]*$"
+# AUTOPICKUP_EXCEPTION="<Staff of Aesculapius"
+AUTOPICKUP_EXCEPTION=">Eyes of the Overworld[^<]*$"
+AUTOPICKUP_EXCEPTION=">Platinum Yendorian Express Card[^<]*$"
+AUTOPICKUP_EXCEPTION=">Orb of Fate[^<]*$"
+AUTOPICKUP_EXCEPTION="<Eye of the Aethiopica"
+# # chaotic
+# AUTOPICKUP_EXCEPTION="<Grimtooth"
+# AUTOPICKUP_EXCEPTION="<Orcrist"
+# AUTOPICKUP_EXCEPTION="<Sting"
+# AUTOPICKUP_EXCEPTION="<Stormbringer"
+# AUTOPICKUP_EXCEPTION="<Longbow of Diana"
+AUTOPICKUP_EXCEPTION=">Master Key of Thievery[^<]*$"
+# # unaligned
+# AUTOPICKUP_EXCEPTION="<Dragonbane"
+AUTOPICKUP_EXCEPTION="<Fire Brand"
+AUTOPICKUP_EXCEPTION="<Frost Brand"
+# AUTOPICKUP_EXCEPTION="<Ogresmasher"
+# AUTOPICKUP_EXCEPTION="<Trollsbane"
+# AUTOPICKUP_EXCEPTION="<Werebane"
+#
+#
+# # ammo for me
+AUTOPICKUP_EXCEPTION="<dagger named !C"
+AUTOPICKUP_EXCEPTION="<dagger named C"
+AUTOPICKUP_EXCEPTION="< named ammo"
+#
+#
+# #ammo monsters shouldn't get
+# AUTOPICKUP_EXCEPTION="<arrow"
+## AUTOPICKUP_EXCEPTION="<elven arrow"
+## AUTOPICKUP_EXCEPTION="<orcish arrow"
+## AUTOPICKUP_EXCEPTION="<silver arrow"
+# AUTOPICKUP_EXCEPTION="<ya"
+# AUTOPICKUP_EXCEPTION="<crossbow bolt"
+# AUTOPICKUP_EXCEPTION="<dart"
+# AUTOPICKUP_EXCEPTION="<shuriken"
+# AUTOPICKUP_EXCEPTION="<dagger"
+## AUTOPICKUP_EXCEPTION="<elven dagger"
+## AUTOPICKUP_EXCEPTION="<orcish dagger"
+## AUTOPICKUP_EXCEPTION="<silver dagger"
+AUTOPICKUP_EXCEPTION="<athame"
+# AUTOPICKUP_EXCEPTION="<knife"
+## AUTOPICKUP_EXCEPTION="<runed arrow"
+## AUTOPICKUP_EXCEPTION="<crude arrow"
+## AUTOPICKUP_EXCEPTION="<bamboo arrow"
+# AUTOPICKUP_EXCEPTION="<throwing star"
+## AUTOPICKUP_EXCEPTION="<runed dagger"
+## AUTOPICKUP_EXCEPTION="<crude dagger"
+#
+# #weapons except ammo.
+# # throne farming: pick up weapons that would damage my pets too much
+# AUTOPICKUP_EXCEPTION="<partisan" #troll polearms - don't know where they come
+# AUTOPICKUP_EXCEPTION="<ranseur"
+# AUTOPICKUP_EXCEPTION="<spetum"
+# AUTOPICKUP_EXCEPTION="<glaive"
+# AUTOPICKUP_EXCEPTION="<vulgar polearm" #troll polearms - don't know where they come
+# AUTOPICKUP_EXCEPTION="<hilted polearm"
+# AUTOPICKUP_EXCEPTION="<forked polearm"
+# AUTOPICKUP_EXCEPTION="<single-edged polearm"
+#
+# # Melee weapons monsters use, sorted roughly by order of preference
+# Dispose of powerful mattocks early on in the mines.
+# AUTOPICKUP_EXCEPTION="<tsurugi"
+# AUTOPICKUP_EXCEPTION="<long samurai sword"
+# AUTOPICKUP_EXCEPTION="<runesword"
+# # AUTOPICKUP_EXCEPTION="<runed broadsword"
+# AUTOPICKUP_EXCEPTION="<dwarvish mattock"
+# AUTOPICKUP_EXCEPTION="<broad pick"
+# AUTOPICKUP_EXCEPTION="<two-handed sword"
+# AUTOPICKUP_EXCEPTION="<battle-axe"
+# AUTOPICKUP_EXCEPTION="<double-headed axe"
+# AUTOPICKUP_EXCEPTION="<katana"
+# AUTOPICKUP_EXCEPTION="<samurai sword"
+# # unihorn - handled by tools section
+AUTOPICKUP_EXCEPTION="<crysknife"
+# AUTOPICKUP_EXCEPTION="<trident"
+# AUTOPICKUP_EXCEPTION="<long sword"
+# AUTOPICKUP_EXCEPTION="<elven broadsword"
+# AUTOPICKUP_EXCEPTION="<runed broadsword"
+# AUTOPICKUP_EXCEPTION="<broadsword"
+# AUTOPICKUP_EXCEPTION="<scimitar"
+# AUTOPICKUP_EXCEPTION="<curved sword"
+# AUTOPICKUP_EXCEPTION="<silver saber" #last throne-farming pickup
+# AUTOPICKUP_EXCEPTION=">morning star[^<]*$"
+# AUTOPICKUP_EXCEPTION=">elven short sword[^<]*$"
+# AUTOPICKUP_EXCEPTION=">runed short sword[^<]*$"
+# AUTOPICKUP_EXCEPTION=">dwarvish short sword[^<]*$"
+# AUTOPICKUP_EXCEPTION=">broad short sword[^<]*$"
+# AUTOPICKUP_EXCEPTION=">short sword[^<]*$"
+# AUTOPICKUP_EXCEPTION=">orcish short sword[^<]*$"
+# AUTOPICKUP_EXCEPTION=">crude short sword[^<]*$"
+# AUTOPICKUP_EXCEPTION=">mace[^<]*$"
+# AUTOPICKUP_EXCEPTION=">axe[^<]*$"
+# AUTOPICKUP_EXCEPTION=">dwarvish spear[^<]*$"
+# AUTOPICKUP_EXCEPTION=">stout spear[^<]*$"
+# AUTOPICKUP_EXCEPTION=">silver spear[^<]*$"
+# AUTOPICKUP_EXCEPTION=">elven spear[^<]*$"
+# AUTOPICKUP_EXCEPTION=">runed spear[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spear[^<]*$"
+# AUTOPICKUP_EXCEPTION=">orcish spear[^<]*$"
+# AUTOPICKUP_EXCEPTION=">crude spear[^<]*$"
+# AUTOPICKUP_EXCEPTION=">flail[^<]*$"
+# # a bullwhip is always useful.
+AUTOPICKUP_EXCEPTION="<bullwhip"
+# AUTOPICKUP_EXCEPTION=">quarterstaff[^<]*$"
+# AUTOPICKUP_EXCEPTION=">staff[^<]*$"
+# AUTOPICKUP_EXCEPTION=">javelin[^<]*$"
+# AUTOPICKUP_EXCEPTION=">throwing spear[^<]*$"
+# AUTOPICKUP_EXCEPTION=">aklys[^<]*$"
+# AUTOPICKUP_EXCEPTION=">thonged club[^<]*$"
+# AUTOPICKUP_EXCEPTION=">club[^<]*$"
+# #pick-axe -- handled by tools section
+# AUTOPICKUP_EXCEPTION=">rubber hose[^<]*$"
+# AUTOPICKUP_EXCEPTION=">war hammer[^<]*$"
+# # silver dagger, elven dagger, dagger, orcish dagger, athame --ammo section
+# AUTOPICKUP_EXCEPTION=">scalpel[^<]*$"
+# # knife --ammo section
+# AUTOPICKUP_EXCEPTION=">worm tooth[^<]*$"
+#
+# # other weapons
+# AUTOPICKUP_EXCEPTION=">boomerang[^<]*$"
+# AUTOPICKUP_EXCEPTION=">stiletto[^<]*$"
+# AUTOPICKUP_EXCEPTION=">lance[^<]*$"
+# AUTOPICKUP_EXCEPTION=">halberd[^<]*$"
+# AUTOPICKUP_EXCEPTION=">bardiche[^<]*$"
+# AUTOPICKUP_EXCEPTION=">voulge[^<]*$"
+# AUTOPICKUP_EXCEPTION=">fauchard[^<]*$"
+# AUTOPICKUP_EXCEPTION=">guisarme[^<]*$"
+# AUTOPICKUP_EXCEPTION=">bill-guisarme[^<]*$"
+# AUTOPICKUP_EXCEPTION=">lucern hammer[^<]*$"
+# AUTOPICKUP_EXCEPTION=">bec de corbin[^<]*$"
+# AUTOPICKUP_EXCEPTION=">bow[^<]*$"
+# AUTOPICKUP_EXCEPTION=">elven bow[^<]*$"
+# AUTOPICKUP_EXCEPTION=">orcish bow[^<]*$"
+# AUTOPICKUP_EXCEPTION=">yumi[^<]*$"
+# AUTOPICKUP_EXCEPTION=">sling[^<]*$"
+# AUTOPICKUP_EXCEPTION=">crossbow[^<]*$"
+# AUTOPICKUP_EXCEPTION=">angled poleaxe[^<]*$"
+# AUTOPICKUP_EXCEPTION=">long poleaxe[^<]*$"
+# AUTOPICKUP_EXCEPTION=">pole cleaver[^<]*$"
+# AUTOPICKUP_EXCEPTION=">pole sickle[^<]*$"
+# AUTOPICKUP_EXCEPTION=">pruning hook[^<]*$"
+# AUTOPICKUP_EXCEPTION=">hooked polearm[^<]*$"
+# AUTOPICKUP_EXCEPTION=">pronged polearm[^<]*$"
+# AUTOPICKUP_EXCEPTION=">beaked polearm[^<]*$"
+# AUTOPICKUP_EXCEPTION=">runed bow[^<]*$"
+# AUTOPICKUP_EXCEPTION=">crude bow[^<]*$"
+# AUTOPICKUP_EXCEPTION=">long bow[^<]*$"
+#
+#
+# #identified magical armor. In general, I need only one of each, which will be un-identified before I pick it up.
+# Poly fodder, so pick it all up
+AUTOPICKUP_EXCEPTION="<robe"
+AUTOPICKUP_EXCEPTION="<elven cloak"
+AUTOPICKUP_EXCEPTION="<alchemy smock"
+AUTOPICKUP_EXCEPTION="<shield of reflection"
+AUTOPICKUP_EXCEPTION="<cornuthaum"
+AUTOPICKUP_EXCEPTION="<dunce cap"
+AUTOPICKUP_EXCEPTION="<helm of brilliance"
+AUTOPICKUP_EXCEPTION="<helm of opposite alignment"
+AUTOPICKUP_EXCEPTION="<helm of telepathy"
+AUTOPICKUP_EXCEPTION="<gauntlets of fumbling"
+AUTOPICKUP_EXCEPTION="<gauntlets of power"
+AUTOPICKUP_EXCEPTION="<gauntlets of dexterity"
+AUTOPICKUP_EXCEPTION="<speed boots"
+AUTOPICKUP_EXCEPTION="<water walking boots"
+AUTOPICKUP_EXCEPTION="<jumping boots"
+AUTOPICKUP_EXCEPTION="<elven boots"
+AUTOPICKUP_EXCEPTION="<kicking boots"
+AUTOPICKUP_EXCEPTION="<fumble boots"
+AUTOPICKUP_EXCEPTION="<levitation boots"
+AUTOPICKUP_EXCEPTION="<cloak of protection"
+AUTOPICKUP_EXCEPTION="<cloak of invisibility"
+AUTOPICKUP_EXCEPTION="<cloak of magic resistance"
+AUTOPICKUP_EXCEPTION="<cloak of displacement"
+#
+#
+# #unidentified magical armor
+# # Usually, a "plumed helmet" is new, but a "helmet called plain" isn't.
+# AUTOPICKUP_EXCEPTION="<faded pall"
+AUTOPICKUP_EXCEPTION="<apron"
+# AUTOPICKUP_EXCEPTION="<polished silver shield"
+# # blind
+# AUTOPICKUP_EXCEPTION="<smooth shield"
+AUTOPICKUP_EXCEPTION="<conical hat"
+# # helms of opposite alignment are useful and rare enough to merit extra treatment.
+AUTOPICKUP_EXCEPTION="<helmet called OA"
+AUTOPICKUP_EXCEPTION="<helmet called align"
+AUTOPICKUP_EXCEPTION="<plumed helmet"
+AUTOPICKUP_EXCEPTION="<etched helmet"
+AUTOPICKUP_EXCEPTION="<crested helmet"
+AUTOPICKUP_EXCEPTION="<visored helmet"
+AUTOPICKUP_EXCEPTION="<tattered cape"
+AUTOPICKUP_EXCEPTION="<opera cloak"
+AUTOPICKUP_EXCEPTION="<ornamental cope"
+AUTOPICKUP_EXCEPTION="<piece of cloth"
+AUTOPICKUP_EXCEPTION="<old gloves"
+AUTOPICKUP_EXCEPTION="<padded gloves"
+AUTOPICKUP_EXCEPTION="<riding gloves"
+AUTOPICKUP_EXCEPTION="<fencing gloves"
+AUTOPICKUP_EXCEPTION="<combat boots"
+AUTOPICKUP_EXCEPTION="<jungle boots"
+AUTOPICKUP_EXCEPTION="<hiking boots"
+AUTOPICKUP_EXCEPTION="<mud boots"
+AUTOPICKUP_EXCEPTION="<buckled boots"
+AUTOPICKUP_EXCEPTION="<riding boots"
+AUTOPICKUP_EXCEPTION="<snow boots"
+#
+#
+# # dragon scale mail and scales
+# AUTOPICKUP_EXCEPTION=">gray dragon scale mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">silver dragon scale mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">shimmering dragon scale mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">red dragon scale mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">white dragon scale mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">orange dragon scale mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">black dragon scale mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">blue dragon scale mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">green dragon scale mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">yellow dragon scale mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">gray dragon scales[^<]*$"
+# AUTOPICKUP_EXCEPTION=">silver dragon scales[^<]*$"
+# AUTOPICKUP_EXCEPTION=">shimmering dragon scales[^<]*$"
+# AUTOPICKUP_EXCEPTION=">red dragon scales[^<]*$"
+# AUTOPICKUP_EXCEPTION=">white dragon scales[^<]*$"
+# AUTOPICKUP_EXCEPTION=">orange dragon scales[^<]*$"
+# AUTOPICKUP_EXCEPTION=">black dragon scales[^<]*$"
+# AUTOPICKUP_EXCEPTION=">blue dragon scales[^<]*$"
+# AUTOPICKUP_EXCEPTION=">green dragon scales[^<]*$"
+# AUTOPICKUP_EXCEPTION=">yellow dragon scales[^<]*$"
+#
+# # identified non-magical armor
+AUTOPICKUP_EXCEPTION=">Hawaiian shirt[^<]*$"
+AUTOPICKUP_EXCEPTION=">T-shirt[^<]*$"
+# AUTOPICKUP_EXCEPTION=">elven leather helm[^<]*$"
+# AUTOPICKUP_EXCEPTION=">orcish helm[^<]*$"
+# AUTOPICKUP_EXCEPTION=">dwarvish iron helm[^<]*$"
+# AUTOPICKUP_EXCEPTION=">fedora[^<]*$"
+# AUTOPICKUP_EXCEPTION=">dented pot[^<]*$"
+# AUTOPICKUP_EXCEPTION=">helmet[^<]*$"
+# AUTOPICKUP_EXCEPTION=">sed helmet[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ded helmet[^<]*$"
+# AUTOPICKUP_EXCEPTION=">y helmet[^<]*$"
+# AUTOPICKUP_EXCEPTION=">f helmet[^<]*$"
+# AUTOPICKUP_EXCEPTION=">plate mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">crystal plate mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">bronze plate mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">splint mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">banded mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">dwarvish mithril-coat[^<]*$"
+# AUTOPICKUP_EXCEPTION=">elven mithril-coat[^<]*$"
+# AUTOPICKUP_EXCEPTION=">chain mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">orcish chain mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scale mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">studded leather armor[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">orcish ring mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">leather armor[^<]*$"
+# AUTOPICKUP_EXCEPTION=">leather jacket[^<]*$"
+# AUTOPICKUP_EXCEPTION=">mummy wrapping[^<]*$"
+# AUTOPICKUP_EXCEPTION=">orcish cloak[^<]*$"
+# AUTOPICKUP_EXCEPTION=">dwarvish cloak[^<]*$"
+# AUTOPICKUP_EXCEPTION=">oilskin cloak[^<]*$"
+# AUTOPICKUP_EXCEPTION=">leather cloak[^<]*$"
+# AUTOPICKUP_EXCEPTION=">small shield[^<]*$"
+# AUTOPICKUP_EXCEPTION=">elven shield[^<]*$"
+# AUTOPICKUP_EXCEPTION=">Uruk-hai shield[^<]*$"
+# AUTOPICKUP_EXCEPTION=">orcish shield[^<]*$"
+# AUTOPICKUP_EXCEPTION=">large shield[^<]*$"
+# AUTOPICKUP_EXCEPTION=">dwarvish roundshield[^<]*$"
+# AUTOPICKUP_EXCEPTION=">leather gloves[^<]*$"
+# AUTOPICKUP_EXCEPTION=">low boots[^<]*$"
+# AUTOPICKUP_EXCEPTION=">iron shoes[^<]*$"
+# AUTOPICKUP_EXCEPTION=">high boots[^<]*$"
+#
+# # unidentified non-magical armor
+# AUTOPICKUP_EXCEPTION=">leather hat[^<]*$"
+# AUTOPICKUP_EXCEPTION=">iron skull cap[^<]*$"
+# AUTOPICKUP_EXCEPTION=">hard hat[^<]*$"
+# AUTOPICKUP_EXCEPTION=">crude chain mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">crude ring mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">coarse mantelet[^<]*$"
+# AUTOPICKUP_EXCEPTION=">hooded cloak[^<]*$"
+# AUTOPICKUP_EXCEPTION=">slippery cloak[^<]*$"
+# AUTOPICKUP_EXCEPTION=">blue and green shield[^<]*$"
+# AUTOPICKUP_EXCEPTION=">white-handed shield[^<]*$"
+# # blind for orcish or elven shield
+# AUTOPICKUP_EXCEPTION=">shield[^<]*$"
+# AUTOPICKUP_EXCEPTION=">f shield[^<]*$"
+# AUTOPICKUP_EXCEPTION=">sed shield[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ted shield[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ded shield[^<]*$"
+# AUTOPICKUP_EXCEPTION=">red-eyed shield[^<]*$"
+# AUTOPICKUP_EXCEPTION=">large round shield[^<]*$"
+# AUTOPICKUP_EXCEPTION=">walking shoes[^<]*$"
+# AUTOPICKUP_EXCEPTION=">hard shoes[^<]*$"
+# AUTOPICKUP_EXCEPTION=">jackboots[^<]*$"
+#
+# #identified rings
+# AUTOPICKUP_EXCEPTION=">ring of adornment[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of gain strength[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of gain constitution[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of increase accuracy[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of increase damage[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of protection[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of regeneration[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of searching[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of stealth[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of sustain ability[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of levitation[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of hunger[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of aggravate monster[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of conflict[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of warning[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of poison resistance[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of fire resistance[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of cold resistance[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of shock resistance[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of free action[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of slow digestion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of teleportation[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of teleport control[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of polymorph[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of polymorph control[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of invisibility[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of see invisible[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ring of protection from shape changers[^<]*$"
+#
+#
+# # unidentified rings.
+# # The same logic applies as for unid'd armor.
+AUTOPICKUP_EXCEPTION="<wooden ring"
+AUTOPICKUP_EXCEPTION="<granite ring"
+AUTOPICKUP_EXCEPTION="<opal ring"
+AUTOPICKUP_EXCEPTION="<clay ring"
+AUTOPICKUP_EXCEPTION="<coral ring"
+AUTOPICKUP_EXCEPTION="<black onyx ring"
+AUTOPICKUP_EXCEPTION="<moonstone ring"
+AUTOPICKUP_EXCEPTION="<tiger eye ring"
+AUTOPICKUP_EXCEPTION="<jade ring"
+AUTOPICKUP_EXCEPTION="<bronze ring"
+AUTOPICKUP_EXCEPTION="<agate ring"
+AUTOPICKUP_EXCEPTION="<topaz ring"
+AUTOPICKUP_EXCEPTION="<sapphire ring"
+AUTOPICKUP_EXCEPTION="<ruby ring"
+AUTOPICKUP_EXCEPTION="<diamond ring"
+AUTOPICKUP_EXCEPTION="<pearl ring"
+AUTOPICKUP_EXCEPTION="<iron ring"
+AUTOPICKUP_EXCEPTION="<brass ring"
+AUTOPICKUP_EXCEPTION="<copper ring"
+AUTOPICKUP_EXCEPTION="<twisted ring"
+AUTOPICKUP_EXCEPTION="<steel ring"
+AUTOPICKUP_EXCEPTION="<silver ring"
+AUTOPICKUP_EXCEPTION="<gold ring"
+AUTOPICKUP_EXCEPTION="<ivory ring"
+AUTOPICKUP_EXCEPTION="<emerald ring"
+AUTOPICKUP_EXCEPTION="<wire ring"
+AUTOPICKUP_EXCEPTION="<engagement ring"
+AUTOPICKUP_EXCEPTION="<shiny ring"
+# # blind. Erodeproofing isn't displayed unless we know the appearance.
+# AUTOPICKUP_EXCEPTION=">ring[^<]*$"
+# AUTOPICKUP_EXCEPTION=">sed ring[^<]*$"
+# AUTOPICKUP_EXCEPTION=">rusty ring[^<]*$"
+# AUTOPICKUP_EXCEPTION=">corroded ring[^<]*$"
+#
+# #identified amulets
+# # Reflection is for pet use. Don't drop harmful ones if you polypile.
+AUTOPICKUP_EXCEPTION="<amulet of life saving"
+AUTOPICKUP_EXCEPTION="<amulet called life"
+AUTOPICKUP_EXCEPTION="<amulet of reflection"
+AUTOPICKUP_EXCEPTION="<amulet called ref"
+# AUTOPICKUP_EXCEPTION=">amulet of ESP[^<]*$"
+# AUTOPICKUP_EXCEPTION=">amulet versus poison[^<]*$"
+# AUTOPICKUP_EXCEPTION=">amulet of unchanging[^<]*$"
+# AUTOPICKUP_EXCEPTION=">amulet of magical breathing[^<]*$"
+# AUTOPICKUP_EXCEPTION=">amulet of change[^<]*$"
+AUTOPICKUP_EXCEPTION=">amulet of strangulation[^<]*$"
+AUTOPICKUP_EXCEPTION=">amulet called die[^<]*$"
+AUTOPICKUP_EXCEPTION=">amulet of restful sleep[^<]*$"
+AUTOPICKUP_EXCEPTION=">amulet called sleep[^<]*$"
+#
+#
+# #unidentified amulets
+# #amulets show up properly when blind
+AUTOPICKUP_EXCEPTION="<circular amulet"
+AUTOPICKUP_EXCEPTION="<spherical amulet"
+AUTOPICKUP_EXCEPTION="<oval amulet"
+AUTOPICKUP_EXCEPTION="<triangular amulet"
+AUTOPICKUP_EXCEPTION="<pyramidal amulet"
+AUTOPICKUP_EXCEPTION="<square amulet"
+AUTOPICKUP_EXCEPTION="<concave amulet"
+AUTOPICKUP_EXCEPTION="<hexagonal amulet"
+AUTOPICKUP_EXCEPTION="<octagonal amulet"
+#
+#
+# # Containers
+# # don't pick up known BoH unless you want magical explosions when you least expect them
+AUTOPICKUP_EXCEPTION=">large box[^<]*$"
+AUTOPICKUP_EXCEPTION=">chest[^<]*$"
+AUTOPICKUP_EXCEPTION=">ice box[^<]*$"
+AUTOPICKUP_EXCEPTION=">large box named junk[^<]*$"
+AUTOPICKUP_EXCEPTION=">chest named junk[^<]*$"
+AUTOPICKUP_EXCEPTION=">ice box named junk[^<]*$"
+# AUTOPICKUP_EXCEPTION=">sack[^<]*$"
+# AUTOPICKUP_EXCEPTION=">d sack[^<]*$"
+# AUTOPICKUP_EXCEPTION=">oilskin sack[^<]*$"
+AUTOPICKUP_EXCEPTION=">bag of holding[^<]*$"
+AUTOPICKUP_EXCEPTION=">bag called hold[^<]*$"
+AUTOPICKUP_EXCEPTION="<bag"
+#
+# # Tonal instruments. Magic flutes are below.
+# AUTOPICKUP_EXCEPTION="<wooden flute"
+# AUTOPICKUP_EXCEPTION="<tooled horn"
+AUTOPICKUP_EXCEPTION="<frost horn"
+AUTOPICKUP_EXCEPTION="<fire horn"
+AUTOPICKUP_EXCEPTION="< horn "
+AUTOPICKUP_EXCEPTION="<sed horn"
+# AUTOPICKUP_EXCEPTION="<wooden harp"
+AUTOPICKUP_EXCEPTION="<magic harp"
+AUTOPICKUP_EXCEPTION="<harp"
+AUTOPICKUP_EXCEPTION="<sed harp"
+# AUTOPICKUP_EXCEPTION="<bugle"
+#
+# # General tools that are rare/good enough for autopickup
+AUTOPICKUP_EXCEPTION="<tallow candle"
+AUTOPICKUP_EXCEPTION="<tallow candles"
+AUTOPICKUP_EXCEPTION="<wax candle"
+AUTOPICKUP_EXCEPTION="<wax candles"
+AUTOPICKUP_EXCEPTION="<candle"
+AUTOPICKUP_EXCEPTION="<sed candle"
+AUTOPICKUP_EXCEPTION="<expensive camera"
+AUTOPICKUP_EXCEPTION="<lenses"
+AUTOPICKUP_EXCEPTION="<stethoscope"
+# AUTOPICKUP_EXCEPTION="<crystal ball"
+AUTOPICKUP_EXCEPTION="<glass orb"
+AUTOPICKUP_EXCEPTION="<can of grease"
+AUTOPICKUP_EXCEPTION="<magic whistle"
+AUTOPICKUP_EXCEPTION="< whistle "
+AUTOPICKUP_EXCEPTION="<d whistle"
+# # drums of earthquake are here to wake up Rodney in speed runs
+AUTOPICKUP_EXCEPTION="<drum of earthquake"
+AUTOPICKUP_EXCEPTION="< drum "
+AUTOPICKUP_EXCEPTION="<magic flute"
+AUTOPICKUP_EXCEPTION="< flute "
+AUTOPICKUP_EXCEPTION="<d flute"
+# # still relevant to the later game
+AUTOPICKUP_EXCEPTION="< magic marker "
+AUTOPICKUP_EXCEPTION="< magic lamp "
+AUTOPICKUP_EXCEPTION="< lamp"
+AUTOPICKUP_EXCEPTION="> oil lamp [^<]*$"
+AUTOPICKUP_EXCEPTION="> lamp called oil[^<]*$"
+# #Don't let monsters unlock doors
+AUTOPICKUP_EXCEPTION="< key"
+ 
+#
+# # General tools I usually don't autopickup
+# #pick-axes for throne farming. When the random monsters set in, don't let  diggers dig.
+# AUTOPICKUP_EXCEPTION="< pick-axe"
+AUTOPICKUP_EXCEPTION="< unicorn horn"
+AUTOPICKUP_EXCEPTION="<bag of tricks"
+AUTOPICKUP_EXCEPTION="<bag called trick"
+AUTOPICKUP_EXCEPTION="<horn of plenty"
+AUTOPICKUP_EXCEPTION=">lock pick[^<]*$"
+AUTOPICKUP_EXCEPTION=">credit card[^<]*$"
+# AUTOPICKUP_EXCEPTION=">brass lantern[^<]*$"
+# AUTOPICKUP_EXCEPTION=">oil lamp[^<]*$"
+AUTOPICKUP_EXCEPTION="> mirror[^<]*$"
+AUTOPICKUP_EXCEPTION="> looking glass[^<]*$"
+# AUTOPICKUP_EXCEPTION="> blindfold[^<]*$"
+# AUTOPICKUP_EXCEPTION="> towel[^<]*$"
+AUTOPICKUP_EXCEPTION="> saddle[^<]*$"
+AUTOPICKUP_EXCEPTION="< leash"
+# AUTOPICKUP_EXCEPTION=">tinning kit[^<]*$"
+AUTOPICKUP_EXCEPTION=">tin opener[^<]*$"
+AUTOPICKUP_EXCEPTION="<figurine of a"
+# AUTOPICKUP_EXCEPTION=">land mine[^<]*$"
+# AUTOPICKUP_EXCEPTION=">beartrap[^<]*$"
+AUTOPICKUP_EXCEPTION=">tin whistle[^<]*$"
+AUTOPICKUP_EXCEPTION=">whistle called tin[^<]*$"
+# AUTOPICKUP_EXCEPTION=">bell[^<]*$"
+# AUTOPICKUP_EXCEPTION=">grappling hook[^<]*$"
+# AUTOPICKUP_EXCEPTION=">iron hook[^<]*$"
+# AUTOPICKUP_EXCEPTION=">leather drum[^<]*$"
+#
+# # We might pick up people food, but never corpses, except lizards, newts, lichen, wraiths, or floating eyes. 
+#
+AUTOPICKUP_EXCEPTION=">a corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">b corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">c corpse[^<]*$"
+#
+# lizards, but not wizards or guards or lords
+AUTOPICKUP_EXCEPTION="<lizard corpse"
+AUTOPICKUP_EXCEPTION=">[^r]d corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">[^a]rd corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">[^z]ard corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">[^l]izard corpse[^<]*$"
+#
+#floating eye corpse
+AUTOPICKUP_EXCEPTION="<floating eye corpse"
+AUTOPICKUP_EXCEPTION=">[^y]e corpse[^<]*$"
+#
+AUTOPICKUP_EXCEPTION=">f corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">g corpse[^<]*$"
+#
+# wraiths, but not Ixoth or Death
+AUTOPICKUP_EXCEPTION="<wraith corpse"
+AUTOPICKUP_EXCEPTION=">[^t]h corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">[^i]th corpse[^<]*$"
+#
+AUTOPICKUP_EXCEPTION=">i corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">k corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">l corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">m corpse[^<]*$"
+#
+#lichen corpse, but not all that other en stuff
+AUTOPICKUP_EXCEPTION="<lichen corpse"
+AUTOPICKUP_EXCEPTION=">[^e]n corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">[^h]en corpse[^<]*$"
+#
+AUTOPICKUP_EXCEPTION=">o corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">p corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">r corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">s corpse[^<]*$"
+#
+# newt
+AUTOPICKUP_EXCEPTION="<newt corpse"
+AUTOPICKUP_EXCEPTION=">[^w]t corpse[^<]*$"
+#
+AUTOPICKUP_EXCEPTION=">u corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">v corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">x corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">y corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">' corpse[^<]*$"
+#
+# # Meat
+AUTOPICKUP_EXCEPTION="<tripe ration"
+AUTOPICKUP_EXCEPTION="<meatball"
+# AUTOPICKUP_EXCEPTION="<meat stick"
+AUTOPICKUP_EXCEPTION="<huge chunks? of meat"
+# AUTOPICKUP_EXCEPTION="<meat ring"
+# # vegetarian. Cream pies for pacifists
+AUTOPICKUP_EXCEPTION="<cream pie"
+AUTOPICKUP_EXCEPTION="<egg"
+AUTOPICKUP_EXCEPTION="<lump of royal jelly"
+AUTOPICKUP_EXCEPTION="<candy bar"
+AUTOPICKUP_EXCEPTION="<fortune cookie"
+AUTOPICKUP_EXCEPTION="<pancake"
+# # vegan
+AUTOPICKUP_EXCEPTION="<lichen corpse"
+AUTOPICKUP_EXCEPTION="<tin of spinach"
+# AUTOPICKUP_EXCEPTION="<kelp frond"
+AUTOPICKUP_EXCEPTION="<eucalyptus leaf"
+AUTOPICKUP_EXCEPTION="<apple"
+AUTOPICKUP_EXCEPTION="<orange"
+AUTOPICKUP_EXCEPTION="< pear"
+AUTOPICKUP_EXCEPTION="<melon"
+AUTOPICKUP_EXCEPTION="<banana"
+AUTOPICKUP_EXCEPTION="<carrot"
+AUTOPICKUP_EXCEPTION="<sprig of wolfsbane"
+AUTOPICKUP_EXCEPTION="<clove of garlic"
+AUTOPICKUP_EXCEPTION="<slime mold"
+AUTOPICKUP_EXCEPTION="<lembas wafer"
+# AUTOPICKUP_EXCEPTION="<cram ration"
+# AUTOPICKUP_EXCEPTION="<food ration"
+# AUTOPICKUP_EXCEPTION="<K-ration"
+# AUTOPICKUP_EXCEPTION="<C-ration"
+#
+# #identified potions
+# AUTOPICKUP_EXCEPTION=">potion of water[^<]*$"
+# AUTOPICKUP_EXCEPTION=">potion of gain ability[^<]*$"
+# AUTOPICKUP_EXCEPTION=">potion of restore ability[^<]*$"
+#													 Offensive items monsters will use
+AUTOPICKUP_EXCEPTION=">potion of acid[^<]*$"
+AUTOPICKUP_EXCEPTION="<potion of confusion"
+AUTOPICKUP_EXCEPTION="<potion of blindness"
+AUTOPICKUP_EXCEPTION="<potion of paralysis"
+AUTOPICKUP_EXCEPTION="<potion of sleeping"
+#													 Defensive items monsters will use
+AUTOPICKUP_EXCEPTION="<potion of speed"
+AUTOPICKUP_EXCEPTION="<potion of healing[^<]*$"
+AUTOPICKUP_EXCEPTION="<potion of extra healing"
+AUTOPICKUP_EXCEPTION="<potion of gain level"
+# AUTOPICKUP_EXCEPTION=">potion of invisibility[^<]*$"
+AUTOPICKUP_EXCEPTION="<potion of full healing"
+#
+# AUTOPICKUP_EXCEPTION=">potion of levitation[^<]*$"
+# AUTOPICKUP_EXCEPTION=">potion of hallucination[^<]*$"
+# AUTOPICKUP_EXCEPTION=">potion of see invisible[^<]*$"
+# AUTOPICKUP_EXCEPTION=">potion of enlightenment[^<]*$"
+# AUTOPICKUP_EXCEPTION=">potion of monster detection[^<]*$"
+# AUTOPICKUP_EXCEPTION=">potion of object detection[^<]*$"
+# AUTOPICKUP_EXCEPTION=">potion of gain energy[^<]*$"
+# AUTOPICKUP_EXCEPTION=">potion of polymorph[^<]*$"
+# AUTOPICKUP_EXCEPTION=">potion of booze[^<]*$"
+# AUTOPICKUP_EXCEPTION=">potion of sickness[^<]*$"
+# AUTOPICKUP_EXCEPTION=">potion of fruit juice[^<]*$"
+# AUTOPICKUP_EXCEPTION=">potion of oil[^<]*$"
+#
+# #Unidentified potions
+# AUTOPICKUP_EXCEPTION=">clear potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ruby potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">pink potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">orange potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">yellow potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">emerald potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">dark green potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">cyan potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">sky blue potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">brilliant blue potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">magenta potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">purple-red potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">puce potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">milky potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">swirly potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">bubbly potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">smoky potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">cloudy potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">effervescent potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">black potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">golden potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">brown potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">fizzy potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">dark potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">white potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">murky potion[^<]*$"
+# #blind
+# AUTOPICKUP_EXCEPTION=">potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">sed potion[^<]*$"
+# AUTOPICKUP_EXCEPTION=">ted potion[^<]*$"
+#
+#
+# # identified scrolls
+AUTOPICKUP_EXCEPTION=">blessed scroll of scare monster[^<]*$"
+AUTOPICKUP_EXCEPTION=">blessed greased scroll of scare monster[^<]*$"
+AUTOPICKUP_EXCEPTION=">scroll of scare monster[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of mail[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of blank paper[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of enchant armor[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of destroy armor[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of confuse monster[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of remove curse[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of enchant weapon[^<]*$"
+AUTOPICKUP_EXCEPTION="<scroll of create monster"
+# AUTOPICKUP_EXCEPTION=">scroll of taming[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of genocide[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of light[^<]*$"
+AUTOPICKUP_EXCEPTION="<scroll of teleportation"
+# AUTOPICKUP_EXCEPTION=">scroll of gold detection[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of food detection[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of identify[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of magic mapping[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of amnesia[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of fire[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of earth[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of punishment[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of charging[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll of stinking cloud[^<]*$"
+#
+# # Unidentified scrolls
+# AUTOPICKUP_EXCEPTION=">stamped scroll[^<]*$"
+# AUTOPICKUP_EXCEPTION=">unlabeled scroll[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled ZELGO MER[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled JUYED AWK YACC[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled NR 9[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled XIXAXA XOXAXA XUXAXA[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled PRATYAVAYAH[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled DAIYEN FOOELS[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled LEP GEX VEN ZEA[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled PRIRUTSENIE[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled ELBIB YLOH[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled VERR YED HORRE[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled VENZAR BORGAVVE[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled THARR[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled YUM YUM[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled KERNOD WEL[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled ELAM EBOW[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled DUAM XNAHT[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled ANDOVA BEGARIN[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled KIRJE[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled VE FORBRYDERNE[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled HACKEM MUCHE[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled VELOX NEB[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled FOOBIE BLETCH[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled TEMOV[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled GARVEN DEH[^<]*$"
+# AUTOPICKUP_EXCEPTION=">scroll labeled READ ME[^<]*$"
+# #blind
+# AUTOPICKUP_EXCEPTION=">scroll[^<]*$"
+# AUTOPICKUP_EXCEPTION=">sed scroll[^<]*$"
+#
+#
+# #Identified spellbooks
+# AUTOPICKUP_EXCEPTION=">spellbook of blank paper[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of dig[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of magic missile[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of fireball[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of cone of cold[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of sleep[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of finger of death[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of light[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of detect monsters[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of healing[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of knock[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of force bolt[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of confuse monster[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of cure blindness[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of drain life[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of slow monster[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of wizard lock[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of create monster[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of detect food[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of cause fear[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of clairvoyance[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of cure sickness[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of charm monster[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of haste self[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of detect unseen[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of levitation[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of extra healing[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of restore ability[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of invisibility[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of detect treasure[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of remove curse[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of magic mapping[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of identify[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of turn undead[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of polymorph[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of teleport away[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of create familiar[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of cancellation[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of protection[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of jumping[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of stone to flesh[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of flame sphere[^<]*$"
+# AUTOPICKUP_EXCEPTION=">spellbook of freeze sphere[^<]*$"
+#
+# #Unidentified spellbooks
+# AUTOPICKUP_EXCEPTION="<plain spellbook"
+AUTOPICKUP_EXCEPTION="<parchment spellbook"
+AUTOPICKUP_EXCEPTION="<vellum spellbook"
+AUTOPICKUP_EXCEPTION="<ragged spellbook"
+AUTOPICKUP_EXCEPTION="<dog eared spellbook"
+AUTOPICKUP_EXCEPTION="<mottled spellbook"
+AUTOPICKUP_EXCEPTION="<stained spellbook"
+AUTOPICKUP_EXCEPTION="<cloth spellbook"
+AUTOPICKUP_EXCEPTION="<leather spellbook"
+AUTOPICKUP_EXCEPTION="<white spellbook"
+AUTOPICKUP_EXCEPTION="<pink spellbook"
+AUTOPICKUP_EXCEPTION="<red spellbook"
+AUTOPICKUP_EXCEPTION="<orange spellbook"
+AUTOPICKUP_EXCEPTION="<yellow spellbook"
+AUTOPICKUP_EXCEPTION="<velvet spellbook"
+AUTOPICKUP_EXCEPTION="<light green spellbook"
+AUTOPICKUP_EXCEPTION="<dark green spellbook"
+AUTOPICKUP_EXCEPTION="<turquoise spellbook"
+AUTOPICKUP_EXCEPTION="<cyan spellbook"
+AUTOPICKUP_EXCEPTION="<light blue spellbook"
+AUTOPICKUP_EXCEPTION="<dark blue spellbook"
+AUTOPICKUP_EXCEPTION="<indigo spellbook"
+AUTOPICKUP_EXCEPTION="<magenta spellbook"
+AUTOPICKUP_EXCEPTION="<purple spellbook"
+AUTOPICKUP_EXCEPTION="<violet spellbook"
+AUTOPICKUP_EXCEPTION="<tan spellbook"
+AUTOPICKUP_EXCEPTION="<plaid spellbook"
+AUTOPICKUP_EXCEPTION="<light brown spellbook"
+AUTOPICKUP_EXCEPTION="<dark brown spellbook"
+AUTOPICKUP_EXCEPTION="<gray spellbook"
+AUTOPICKUP_EXCEPTION="<wrinkled spellbook"
+AUTOPICKUP_EXCEPTION="<dusty spellbook"
+AUTOPICKUP_EXCEPTION="<bronze spellbook"
+AUTOPICKUP_EXCEPTION="<copper spellbook"
+AUTOPICKUP_EXCEPTION="<silver spellbook"
+AUTOPICKUP_EXCEPTION="<gold spellbook"
+AUTOPICKUP_EXCEPTION="<glittering spellbook"
+AUTOPICKUP_EXCEPTION="<shining spellbook"
+AUTOPICKUP_EXCEPTION="<dull spellbook"
+AUTOPICKUP_EXCEPTION="<thin spellbook"
+AUTOPICKUP_EXCEPTION="<thick spellbook"
+AUTOPICKUP_EXCEPTION="<canvas spellbook"
+AUTOPICKUP_EXCEPTION="<hardcover spellbook"
+# #blind
+# AUTOPICKUP_EXCEPTION="<spellbook"
+# AUTOPICKUP_EXCEPTION="<sed spellbook"
+#
+#
+# #Identified wands
+AUTOPICKUP_EXCEPTION="<wand of wishing"
+AUTOPICKUP_EXCEPTION="<wand called wish"
+AUTOPICKUP_EXCEPTION="<wand of create monster"
+AUTOPICKUP_EXCEPTION="<wand of teleportation"
+AUTOPICKUP_EXCEPTION="<wand called tele"
+AUTOPICKUP_EXCEPTION="<wand of polymorph"
+AUTOPICKUP_EXCEPTION="<wand called poly"
+AUTOPICKUP_EXCEPTION="<wand of fire"
+AUTOPICKUP_EXCEPTION="<wand of lightning"
+# AUTOPICKUP_EXCEPTION="<wand of death"
+# # In the late game, cold is used for Juiblex swamp, etc.
+AUTOPICKUP_EXCEPTION="<wand of cold"
+AUTOPICKUP_EXCEPTION=">wand of light( |$)[^<]*$"
+AUTOPICKUP_EXCEPTION=">wand of secret door detection[^<]*$"
+AUTOPICKUP_EXCEPTION=">wand of enlightenment[^<]*$"
+AUTOPICKUP_EXCEPTION=">wand of nothing[^<]*$"
+AUTOPICKUP_EXCEPTION="<wand of striking"
+AUTOPICKUP_EXCEPTION="<wand of magic missile" #it can't hurt me, but my pets.
+AUTOPICKUP_EXCEPTION="<wand of make invisible"
+# AUTOPICKUP_EXCEPTION="<wand of slow monster"
+AUTOPICKUP_EXCEPTION="<wand of speed monster"
+# AUTOPICKUP_EXCEPTION=">wand of undead turning[^<]*$"
+# AUTOPICKUP_EXCEPTION=">wand of cancellation[^<]*$"
+# AUTOPICKUP_EXCEPTION=">wand of opening[^<]*$"
+# AUTOPICKUP_EXCEPTION=">wand of locking[^<]*$"
+# AUTOPICKUP_EXCEPTION=">wand of probing[^<]*$"
+# AUTOPICKUP_EXCEPTION=">wand of digging[^<]*$"
+AUTOPICKUP_EXCEPTION="<wand of sleep"
+#
+# #Unidentified wands
+# AUTOPICKUP_EXCEPTION="<glass wand"
+# AUTOPICKUP_EXCEPTION="<balsa wand"
+# AUTOPICKUP_EXCEPTION="<crystal wand"
+# AUTOPICKUP_EXCEPTION="<maple wand"
+# AUTOPICKUP_EXCEPTION="<pine wand"
+# AUTOPICKUP_EXCEPTION="<oak wand"
+# AUTOPICKUP_EXCEPTION="<ebony wand"
+# AUTOPICKUP_EXCEPTION="<marble wand"
+# AUTOPICKUP_EXCEPTION="<tin wand"
+# AUTOPICKUP_EXCEPTION="<brass wand"
+# AUTOPICKUP_EXCEPTION="<copper wand"
+# AUTOPICKUP_EXCEPTION="<silver wand"
+# AUTOPICKUP_EXCEPTION="<platinum wand"
+# AUTOPICKUP_EXCEPTION="<iridium wand"
+# AUTOPICKUP_EXCEPTION="<zinc wand"
+# AUTOPICKUP_EXCEPTION="<aluminum wand"
+# AUTOPICKUP_EXCEPTION="<uranium wand"
+# AUTOPICKUP_EXCEPTION="<iron wand"
+# AUTOPICKUP_EXCEPTION="<steel wand"
+# AUTOPICKUP_EXCEPTION="<hexagonal wand"
+# AUTOPICKUP_EXCEPTION="<short wand"
+# AUTOPICKUP_EXCEPTION="<runed wand"
+# AUTOPICKUP_EXCEPTION="<long wand"
+# AUTOPICKUP_EXCEPTION="<curved wand"
+# AUTOPICKUP_EXCEPTION="<forked wand"
+# AUTOPICKUP_EXCEPTION="<spiked wand"
+# AUTOPICKUP_EXCEPTION="<jeweled wand"
+# #blind
+# AUTOPICKUP_EXCEPTION=">wand[^<]*$"
+# AUTOPICKUP_EXCEPTION=">sed wand[^<]*$"
+#
+#
+#identified gems (valueable and glass)
+# AUTOPICKUP_EXCEPTION="<dilithium crystal"
+# AUTOPICKUP_EXCEPTION="<diamond"
+# AUTOPICKUP_EXCEPTION="<ruby"
+# AUTOPICKUP_EXCEPTION="<sapphire"
+# AUTOPICKUP_EXCEPTION="<black opal"
+# AUTOPICKUP_EXCEPTION="<jacinth stone"
+# AUTOPICKUP_EXCEPTION="<emerald stone"
+# AUTOPICKUP_EXCEPTION="<turquoise stone"
+# AUTOPICKUP_EXCEPTION="<citrine stone"
+# AUTOPICKUP_EXCEPTION="<aquamarine stone"
+# AUTOPICKUP_EXCEPTION="<amber stone"
+# AUTOPICKUP_EXCEPTION="<topaz stone"
+# AUTOPICKUP_EXCEPTION="<jet stone"
+# AUTOPICKUP_EXCEPTION="<opal stone"
+# AUTOPICKUP_EXCEPTION="<chrysoberyl stone"
+# AUTOPICKUP_EXCEPTION="<garnet stone"
+# AUTOPICKUP_EXCEPTION="<amethyst stone"
+# AUTOPICKUP_EXCEPTION="<jasper stone"
+# AUTOPICKUP_EXCEPTION="<fluorite stone"
+# AUTOPICKUP_EXCEPTION="<obsidian stone"
+# AUTOPICKUP_EXCEPTION="<agate stone"
+# AUTOPICKUP_EXCEPTION="<jade stone"
+# #*glass" catches glass wand, glass orb
+AUTOPICKUP_EXCEPTION=">worthless[^<]*$"
+# AUTOPICKUP_EXCEPTION=">worthless piece of white glass[^<]*$"
+# AUTOPICKUP_EXCEPTION=">worthless piece of blue glass[^<]*$"
+# AUTOPICKUP_EXCEPTION=">worthless piece of red glass[^<]*$"
+# AUTOPICKUP_EXCEPTION=">worthless piece of yellowish brown glass[^<]*$"
+# AUTOPICKUP_EXCEPTION=">worthless piece of orange glass[^<]*$"
+# AUTOPICKUP_EXCEPTION=">worthless piece of yellow glass[^<]*$"
+# AUTOPICKUP_EXCEPTION=">worthless piece of black glass[^<]*$"
+# AUTOPICKUP_EXCEPTION=">worthless piece of green glass[^<]*$"
+# AUTOPICKUP_EXCEPTION=">worthless piece of violet glass[^<]*$"
+#
+# #unidentified gems, gray stone.
+# # pick up luckstones as spares, just in case.
+# # I usually name new gems "hardness color turn_number",
+# # to know when I have several kinds.
+AUTOPICKUP_EXCEPTION="<black gem"
+AUTOPICKUP_EXCEPTION="<blue gem"
+AUTOPICKUP_EXCEPTION="<green gem"
+AUTOPICKUP_EXCEPTION="<orange gem"
+AUTOPICKUP_EXCEPTION="<red gem"
+AUTOPICKUP_EXCEPTION="<violet gem"
+AUTOPICKUP_EXCEPTION="<white gem"
+AUTOPICKUP_EXCEPTION="<yellow gem"
+AUTOPICKUP_EXCEPTION="<yellowish brown gem"
+#
+AUTOPICKUP_EXCEPTION="> loadstone[^<]*$"
+AUTOPICKUP_EXCEPTION="<stone called luck"
+AUTOPICKUP_EXCEPTION="< luckstone"
+# AUTOPICKUP_EXCEPTION="< touchstone"
+AUTOPICKUP_EXCEPTION="> rock[^<]*$"
+#
+# #blind: glass/gems show up as gem, all else as stone.
+AUTOPICKUP_EXCEPTION="> stone[^<]*$"
+ 
+ # #blind: glass/gems show up as gem, all else as stone.
+ AUTOPICKUP_EXCEPTION="> stone[^<]*$"
+# #blind: glass/gems show up as gem, all else as stone.
+# AUTOPICKUP_EXCEPTION=">gem[^<]*$"
+# AUTOPICKUP_EXCEPTION=">sed gem[^<]*$"
+AUTOPICKUP_EXCEPTION=">stone[^<]*$"
+AUTOPICKUP_EXCEPTION=">sed stone[^<]*$"
+#
+# #Misc junk. Never pick up iron balls so pickup_types can be "0" if you only want exceptions.
+AUTOPICKUP_EXCEPTION=">statue of[^<]*$"
+AUTOPICKUP_EXCEPTION=">heavy iron ball[^<]*$"
+# AUTOPICKUP_EXCEPTION=">iron chain[^<]*$"
+# AUTOPICKUP_EXCEPTION=">blinding venom[^<]*$"
+# AUTOPICKUP_EXCEPTION=">acid venom[^<]*$"
+# AUTOPICKUP_EXCEPTION=">splash of venom[^<]*$"
+#
+######################
+# Section 5: MSGTYPE #
+######################
+# [vimsec5]
+#
+#-------------------------
+#| Contents of "MSGTYPE" |
+#-------------------------------------------------------------------------------------------------------------
+# MSGTYPE Mini-Spoiler    : What it sounds like.                                                   : (vimsec51
+# Delayed Instadeaths     : Stops when you are about to die so you don't blow through the message. : (vimsec52
+# Message Spam            : Eliminates messages you don't want to see.                             : (vimsec53
+# Miscellaneous           : Other customizations to messages.                                      : (vimsec54
+# ------------------------------------------------------------------------------------------------------------
+#
+#------------------------
+#| MSGTYPE Mini-Spoiler |
+#------------------------
+# [vimsec51]
+# MSGTYPE is a patch that lets you control what messages you want to see.
+# I haven't seen it on any public servers other than NAO, but I expect it will become
+# more common soon.
+#
+# Available options are:
+# MSGTYPE=stop   - Force a --More-- to appear after the message, to make it harder to blow through.
+# MSGTYPE=hide   - Don't display a message
+# MSGTYPE=norep  - Don't display a message twice in a row, only if another message is in between
+# MSGTYPE=show   - Display the message as normal; useful for exceptions
+#
+# You can use crude regex/wildcards:
+# * represents zero to infinity characters.
+# ? represents one character.
+#
+# Like menucolors, later entries take precedence, so exceptions should go last.
+#
+#------------------------
+#| Pacifist				 |
+#------------------------
+MSGTYPE=stop "You hit .*"
+MSGTYPE=stop "You miss .*"
+#
+#-----------------------
+#| Delayed Instadeaths |
+#-----------------------
+# [vimsec52]
+# Credits to stth, obtained via TjrWiz (username tjr2)
+#
+MSGTYPE=stop "The couatl swings itself around you!"
+MSGTYPE=stop "The electric eel swings itself around you!"
+MSGTYPE=stop "The giant eel swings itself around you!"
+MSGTYPE=stop "The kraken swings itself around you!"
+MSGTYPE=stop "The python grabs you!"
+MSGTYPE=stop "You don't feel very well."
+MSGTYPE=stop "You are turning a little green."
+MSGTYPE=stop "Your limbs are getting oozy."
+MSGTYPE=stop "Your skin begins to peel away."
+MSGTYPE=stop "You are turning into a green slime."
+MSGTYPE=stop "You are slowing down."
+MSGTYPE=stop "Your limbs are stiffening."
+MSGTYPE=stop "It constricts your throat!"
+MSGTYPE=stop "You find it hard to breathe."
+MSGTYPE=stop "You're gasping for air."
+MSGTYPE=stop "Your blood is having trouble reaching your brain."
+MSGTYPE=stop "You can no longer breathe."
+MSGTYPE=stop "You're turning blue."
+MSGTYPE=stop "Your consciousness is fading."
+MSGTYPE=stop "You feel deathly sick."
+MSGTYPE=stop "You feel much worse."
+MSGTYPE=stop "You feel even worse."
+#
+# Things that aren't dangerous by themselves but could kill you if you don't
+# notice.
+MSGTYPE=stop "You see here a cockatrice corpse."
+MSGTYPE=stop "You see here a chickatrice corpse."
+MSGTYPE=stop "You are beginning to feel weak."
+MSGTYPE=stop "You fail to cast the spell correctly."
+MSGTYPE=stop "Your wielded .* rots away."
+MSGTYPE=stop "You find a"
+#
+#----------------
+#| Message Spam |
+#----------------
+# [vimsec53]
+# NetHack gives you a lot of messages that you don't really need, or you don't
+# really need once you're an experienced player. Taking them out can save you
+# some typing and some messages you don't need to see.
+#
+# Annoying spam when using poisoned weapons. Theoretically this removes useful
+# information, but I know what monsters are poison resistant and really don't
+# give a crap when they become unpoisoned, since I know they will eventually
+# and I can hit the 'i' key if I want to see how many I have left.
+MSGTYPE=hide "The poison doesn't seem to affect the"
+MSGTYPE=hide "The poison doesn't seem to affect it."
+MSGTYPE=hide "Your arrow .* is no longer poisoned."
+MSGTYPE=hide "Your dart .* is no longer poisoned."
+#
+# For dagger/arrowstorming. Displays individual hit messages
+# only if you miss or if you only threw one. Else you just get "You throw x
+# daggers" and "You kill the foo" (and "The poison was deadly...").
+# The one potential gotcha is that you get no feedback if your shot was actually
+# out of range, so it's wise to know your maximum shooting range.
+#      implicit                   # SHOW "You shoot [x] arrows."
+# SHOW "the arrow hits the foo"
+MSGTYPE=show "The .* hits the "
+# HIDE "the 1st/2nd/3rd/4th/5th arrow hits the foo"
+MSGTYPE=hide "The ... .* hits "
+#
+# Sokoban spam.
+MSGTYPE=hide "With great effort you move the boulder."
+#riding
+MSGTYPE=hide ".* moves the boulder."
+MSGTYPE=hide "You try to move the boulder, but in vain."
+#riding
+MSGTYPE=hide " tries to move the boulder, but cannot."
+#
+# When a pet is slower than you, you have to listen to the game complain a lot.
+# It'll still make noise, but no need to see the same thing twice over.
+MSGTYPE=hide "You pull on the leash."
+#
+# The whole point of autoquiver is that you don't have to be bothered
+# with what's in your quiver.
+MSGTYPE=hide "You fill your quiver"
+#
+# One message about stashing is enough
+MSGTYPE=norep "You cannot stash something you are wearing."
+#
+# If you're like me and type fast, you'll get annoyed very quickly by
+# this message when you press the spacebar too many times.
+MSGTYPE=hide "Unknown command ' '."
+#
+#-----------------
+#| Miscellaneous |
+#-----------------
+# [vimsec54]
+#
+# Messages it's easy to miss.
+MSGTYPE=stop "You feel more confident in your.*skills.*"
+MSGTYPE=stop "You feel a strange vibration.*"
+#
+#
+# A '#' at the beginning of a line means the rest of the line is a comment.
+# Some options MUST be set in this file, other options can be toggled while
+
+#---------End config file---------# 
