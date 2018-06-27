@@ -11,9 +11,6 @@ set number
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 
-nnoremap <leader>vv :vsplit $MYVIMRC <cr> “ Edit ~/.vimrc
-nnoremap <leader>vr :source $MYVIMRC <cr> “ Source ~/.vimrc
-
 :augroup numbertoggle
 :  autocmd!
 :  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
@@ -54,4 +51,7 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+nnoremap <leader>vv :vsplit $MYVIMRC <cr> “ Edit ~/.vimrc
+nnoremap <leader>vr :source $MYVIMRC <cr> “ Source ~/.vimrc
 
