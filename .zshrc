@@ -87,7 +87,7 @@ source $ZSH/oh-my-zsh.sh
 export PATH="/Users/crissman/anaconda3/bin:$PATH"
 
 alias cdg='cd ~/Documents/Github'
-alias ag='alias | grep'
+alias alg='alias | grep'
 alias scr='vim ~/Documents/scratch.txt'
 alias cdc='cd ~/Documents/Github/Chainer'
 alias zrc='vim ~/.zshrc; source ~/.zshrc'
@@ -97,3 +97,6 @@ alias awsh='ssh -i ~/.ssh/crissman_aws_virginia.pem ubuntu@$AWS'
 alias awsf='ssh -N -f -L localhost:8888:localhost:8889 ubuntu@$AWS'
 
 alias config='/usr/local/bin/git --git-dir=/Users/crissman/.cfg/ --work-tree=/Users/crissman'
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
