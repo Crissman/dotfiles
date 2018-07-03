@@ -63,3 +63,6 @@ endif
 
 nnoremap <leader>vv :vsplit $MYVIMRC <cr> “ Edit ~/.vimrc
 nnoremap <leader>vr :source $MYVIMRC <cr> “ Source ~/.vimrc
+
+" Add fzf capabilities to VIM
+set rtp+=/usr/local/opt/fzf

@@ -101,3 +101,5 @@ alias conup='cd;config commit -am "`date`";config pull origin master; config pus
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
