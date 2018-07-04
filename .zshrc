@@ -51,7 +51,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -97,6 +97,7 @@ alias awsh='ssh -i ~/.ssh/crissman_aws_virginia.pem ubuntu@$AWS'
 alias awsf='ssh -N -f -L localhost:8888:localhost:8889 ubuntu@$AWS'
 
 alias config='/usr/local/bin/git --git-dir=/Users/crissman/.cfg/ --work-tree=/Users/crissman'
+alias conup='cd;config commit -am "`date`";config pull origin master; config push origin master;cd -'
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
