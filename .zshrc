@@ -100,3 +100,14 @@ alias config='/usr/local/bin/git --git-dir=/Users/crissman/.cfg/ --work-tree=/Us
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+# fe [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fe() {
+  local files
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
