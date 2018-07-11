@@ -98,7 +98,7 @@ alias glast='git diff-tree --no-commit-id --name-only -r HEAD~1..HEAD'
 alias gvl='cdc;vim $(glast)'
 
 alias config='/usr/local/bin/git --git-dir=/Users/crissman/.cfg/ --work-tree=/Users/crissman'
-alias conup='cd;config commit -am "`date`";config pull origin master; config push origin master;cd -'
+alias conup='cd;config commit -am "`date`";config pull origin master; config push origin master;cd -;source ~/.fzf.zsh'
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
