@@ -84,7 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH="/Users/crissman/anaconda3/bin:$PATH"
+export PATH="/anaconda3/bin:$PATH"
 
 alias cdg='cd ~/Documents/Github'
 alias alg='alias | grep'
@@ -95,6 +95,8 @@ alias f8='flake8 --ignore=W503'
 alias cc='cdc; f8; cd docs; make clean; make html'
 alias awsh='ssh -i ~/.ssh/crissman_aws_virginia.pem ubuntu@$AWS' 
 alias awsf='ssh -N -f -L localhost:8888:localhost:8889 ubuntu@$AWS'
+alias glast='git diff-tree --no-commit-id --name-only -r HEAD~1..HEAD'
+alias gvl='cdc;vim $(glast)'
 
 alias config='/usr/local/bin/git --git-dir=/Users/crissman/.cfg/ --work-tree=/Users/crissman'
 alias conup='cd;config commit -am "`date`";config pull origin master; config push origin master;cd -'
