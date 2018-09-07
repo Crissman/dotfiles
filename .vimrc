@@ -1,4 +1,5 @@
 syntax on
+set clipboard=unnamed
 setlocal spell spelllang=en_us
 set spellfile=~/.vim/spell/en.utf-8.add
 set ignorecase
