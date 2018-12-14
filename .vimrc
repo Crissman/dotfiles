@@ -10,7 +10,28 @@ set linebreak
 set relativenumber
 set number
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
-autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
+
+set scrolloff=3
+set autoindent
+set showmode
+set showcmd
+set hidden
+set wildmenu
+set wildmode=list:longest
+set visualbell
+set cursorline
+set ttyfast
+set ruler
+set backspace=indent,eol,start
+set laststatus=2
+
+let mapleader = ' '
+
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
 
 :augroup numbertoggle
 :  autocmd!
@@ -38,6 +59,8 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-surround'
 Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
+Plugin 'klen/python-mode'
+
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -62,8 +85,21 @@ if has("clipboard")
   endif
 endif
 
-nnoremap <leader>vv :vsplit $MYVIMRC <cr> “ Edit ~/.vimrc
-nnoremap <leader>vr :source $MYVIMRC <cr> “ Source ~/.vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC <cr> “ Edit ~/.vimrc
+nnoremap <leader>rv vsource $MYVIMRC <cr> “ Source ~/.vimrc
 
 " Add fzf capabilities to VIM
 set rtp+=/usr/local/opt/fzf
+
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+nnoremap ; :
+
+au FocusLost * :wa  " Save on loss of focus
