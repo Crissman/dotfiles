@@ -84,8 +84,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH="/Users/crissman/anaconda3/bin:$PATH"
-
 alias cdg='cd ~/Documents/Github'
 alias alg='alias | grep'
 alias scr='vim ~/Documents/scratch.txt'

@@ -26,7 +26,8 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 
-let mapleader = ' '
+" nnoremap <SPACE> <Nop>
+let mapleader = '\'
 
 set gdefault
 set incsearch
@@ -85,9 +86,10 @@ if has("clipboard")
   endif
 endif
 
-nnoremap <leader>ev :vsplit $MYVIMRC <cr> “ Edit ~/.vimrc
-nnoremap <leader>rv vsource $MYVIMRC <cr> “ Source ~/.vimrc
-
+nnoremap <leader>ev :vsplit $MYVIMRC <cr>  " Edit ~/.vimrc
+nnoremap <leader>rv :so $MYVIMRC <cr>  " Source ~/.vimrc
+map <silent> <leader>pd Oimport pdb; pdb.set_trace()<esc> " Add python debugging line
+ 
 " Add fzf capabilities to VIM
 set rtp+=/usr/local/opt/fzf
 
