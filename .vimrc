@@ -26,7 +26,7 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 
-" nnoremap <SPACE> <Nop>
+" nnoremap <SPACE> <Nop> " Doesn't work
 let mapleader = '\'
 
 set gdefault
@@ -60,7 +60,8 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-surround'
 Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
-Plugin 'klen/python-mode'
+Plugin 'klen/python-mode', { 'branch': 'develop' }
+Plugin 'tmhedberg/simpylfold'
 
 
 call vundle#end()            " required
@@ -105,3 +106,5 @@ inoremap <right> <nop>
 nnoremap ; :
 
 au FocusLost * :wa  " Save on loss of focus
+
+autocmd FileType python normal zR
