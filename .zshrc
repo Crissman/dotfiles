@@ -111,3 +111,5 @@ fe() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH=/users/Crissman/anaconda3/bin:$PATH
