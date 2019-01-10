@@ -61,7 +61,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
 Plugin 'klen/python-mode', { 'branch': 'develop' }
-Plugin 'tmhedberg/simpylfold'
+" Plugin 'tmhedberg/simpylfold'
 
 
 call vundle#end()            " required
