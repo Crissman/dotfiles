@@ -104,7 +104,7 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-nnoremap ; :
+" nnoremap ; :
 
 au FocusLost * :wa  " Save on loss of focus
 
