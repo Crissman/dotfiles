@@ -12,6 +12,7 @@ set number
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
 
+set tabpagemax=100
 set scrolloff=3
 set autoindent
 set showmode
