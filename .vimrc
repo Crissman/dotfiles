@@ -68,6 +68,9 @@ Plugin 'klen/python-mode', { 'branch': 'develop' }
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+let g:pymode_python = 'python'  " To avoid run errors with lint. https://github.com/python-mode/python-mode/issues/908
+
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
