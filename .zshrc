@@ -99,8 +99,12 @@ alias gvl='cdc;vim $(glast)'
 alias cl='clear'
 alias cr='clear; fc -e : -1'
 alias config='/usr/local/bin/git --git-dir=/Users/crissman/.cfg/ --work-tree=/Users/crissman'
-alias conup='cd;config commit -am "`date`";config pull origin master; config push origin master;cd -;source ~/.fzf.zsh'
+alias conup='cd;config commit -am "`date`";config pull origin master; config push origin master;cd -;source ~/.fzf.zsh; source ~/.zshrc'
 
+gpr() {
+	git fetch upstream pull/"$1"/head:"$1"
+	git checkout "$1"
+}
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
