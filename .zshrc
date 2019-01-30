@@ -120,3 +120,5 @@ fe() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH=/users/Crissman/anaconda3/bin:$PATH
+export CHAINER_BUILD_CHAINERX=1
+export MAKEFLAGS=-j8  # Using 8 parallel jobs
