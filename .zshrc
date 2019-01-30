@@ -102,8 +102,8 @@ alias config='/usr/local/bin/git --git-dir=/Users/crissman/.cfg/ --work-tree=/Us
 alias conup='cd;config commit -am "`date`";config pull origin master; config push origin master;cd -;source ~/.fzf.zsh; source ~/.zshrc'
 
 gpr() {
-	git fetch upstream pull/"$1"/head:PR"$1"
-	git checkout PR"$1"
+	git fetch upstream pull/"$1"/head:pr"$1"
+	git checkout pr"$1"
 }
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
