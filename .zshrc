@@ -90,7 +90,7 @@ alias scr='vim ~/Documents/scratch.txt'
 alias cdc='cd ~/Documents/Github/Chainer'
 alias zrc='vim ~/.zshrc; conup'
 alias vrc='vim ~/.vimrc; conup'
-alias cc='export CWD=$PWD; cdc; python setup.py build install > /dev/null; flake8; cd docs; make clean; make html; cd $CWD'
+alias cc='export CWD=$PWD; cdc; python setup.py build install > /dev/null; flake8; cd docs; make clean; SPHINXOPTS= make html; cd $CWD'
 alias awsh='ssh -i ~/.ssh/crissman_aws_virginia.pem ubuntu@$AWS' 
 alias awsf='ssh -N -f -L localhost:8888:localhost:8889 ubuntu@$AWS'
 alias glast='git diff-tree --no-commit-id --name-only -r HEAD~1..HEAD'
@@ -125,4 +125,4 @@ export CHAINER_BUILD_CHAINERX=1
 export MAKEFLAGS=-j8  # Using 8 parallel jobs
 
 # Secure info replicated elsewhere
-bash /Users/crissman/Documents/secure.sh
+source /Users/crissman/Documents/secure.sh
