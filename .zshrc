@@ -123,3 +123,6 @@ fe() {
 export PATH=/users/Crissman/anaconda3/bin:$PATH
 export CHAINER_BUILD_CHAINERX=1
 export MAKEFLAGS=-j8  # Using 8 parallel jobs
+
+# Secure info replicated elsewhere
+bash /Users/crissman/Documents/secure.sh
