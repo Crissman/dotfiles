@@ -100,6 +100,7 @@ alias cl='clear'
 alias cr='clear; fc -e : -1'
 alias config='/usr/local/bin/git --git-dir=/Users/crissman/.cfg/ --work-tree=/Users/crissman'
 alias conup='cd;config commit -am "`date`";config pull origin master; config push origin master;cd -;source ~/.fzf.zsh; source ~/.zshrc'
+alias pi='pip install -U'
 
 gpr() {
 	git fetch upstream pull/"$1"/head:p"$1"
