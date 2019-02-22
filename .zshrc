@@ -105,8 +105,8 @@ alias mmv='noglob zmv -W'
 alias cpu='top -F -R -o cpu'
 
 gpr() {
-	git fetch upstream pull/"$1"/head:"$2"-pr"$1"
-	git checkout "$2"-pr"$1"
+	git fetch upstream pull/"$2"/head:"$1"-pr"$2"
+	git checkout "$1"-pr"$2"
 }
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
