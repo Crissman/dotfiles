@@ -103,6 +103,7 @@ alias conup='cd;config commit -am "`date`";config pull origin master; config pus
 alias pi='pip install -U'
 alias mmv='noglob zmv -W'
 alias cpu='top -F -R -o cpu'
+alias gbD='gcm; gb -D'
 
 gpr() {
 	git fetch upstream pull/"$2"/head:"$1"-pr"$2"
