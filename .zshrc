@@ -105,6 +105,7 @@ alias mmv='noglob zmv -W'
 alias cpu='top -F -R -o cpu'
 alias gbD='gcm; gb -D'
 alias ex='exit'
+alias grum='git rebase upstream/master'
 
 gpr() {
 	git fetch upstream pull/"$2"/head:"$1"-pr"$2"
