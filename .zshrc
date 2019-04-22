@@ -108,8 +108,8 @@ alias grum='git rebase upstream/master'
 cdc() {
 	if [ -e ~/Documents/Github/Chainer/ ]; then
 		cd ~/Documents/Github/Chainer
-	elif [ -e ~/Chainer/ ]; then
-		cd ~/Chainer
+	elif [ -e ~/chainer/ ]; then
+		cd ~/chainer
 	else
 		echo "Chainer directory not found!" >&2
 	fi
