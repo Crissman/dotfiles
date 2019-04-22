@@ -87,7 +87,6 @@ source $ZSH/oh-my-zsh.sh
 alias cdg='cd ~/Documents/Github'
 alias alg='alias | grep'
 alias scr='vim ~/Documents/scratch.txt'
-alias cdc='cd ~/Documents/Github/Chainer'
 alias zrc='vim ~/.zshrc; conup'
 alias vrc='vim ~/.vimrc; conup'
 alias cc='export CWD=$PWD; cdc; pip install -e .; flake8; cd docs; make clean; SPHINXOPTS= make html; cd $CWD'
