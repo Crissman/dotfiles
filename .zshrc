@@ -147,4 +147,4 @@ export CHAINER_BUILD_CHAINERX=1
 export MAKEFLAGS=-j8  # Using 8 parallel jobs
 
 # Secure info replicated elsewhere
-source /Users/crissman/Documents/secure.sh
+source $HOME/secure.sh
