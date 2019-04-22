@@ -102,7 +102,6 @@ alias conup='cd;config commit -am "`date`";config pull origin master; config pus
 alias pi='pip install -U'
 alias mmv='noglob zmv -W'
 alias cpu='top -F -R -o cpu'
-alias gbD='gcm; gb -D'
 alias ex='exit'
 alias grum='git rebase upstream/master'
 
@@ -116,9 +115,14 @@ cdc() {
 	fi
 }
 ct() {
-	tfile=
-	git fetch upstream pull/"$2"/head:"$1"-pr"$2"
-	git checkout "$1"-pr"$2"
+	export CWD=$PWD
+	cdc
+	cd tests/chainer_tests/functions_tests/
+	gpr "$1" "$2"
+	pytest -m "not slow and not gpu and not cudnn and not ideep" $(ag -g "$1".py)
+	gcm
+	pytest -m "not slow and not gpu and not cudnn and not ideep" $(ag -g "$1".py)
+	cd $CWD
 }
 gpr() {
 	git fetch upstream pull/"$2"/head:"$1"-pr"$2"
