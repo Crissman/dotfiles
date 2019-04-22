@@ -147,4 +147,6 @@ export CHAINER_BUILD_CHAINERX=1
 export MAKEFLAGS=-j8  # Using 8 parallel jobs
 
 # Secure info replicated elsewhere
-source $HOME/secure.sh
+if [ "$(uname 2> /dev/null)" == "Linux" ]; then
+	source $HOME/secure.sh
+fi
