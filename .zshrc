@@ -107,6 +107,20 @@ alias gbD='gcm; gb -D'
 alias ex='exit'
 alias grum='git rebase upstream/master'
 
+cdc() {
+	if [ -e ~/Documents/Github/Chainer/ ]; then
+		cd ~/Documents/Github/Chainer
+	elif [ -e ~/Chainer/ ]; then
+		cd ~/Chainer
+	else
+		echo "Chainer directory not found!" >&2
+	fi
+}
+ct() {
+	tfile=
+	git fetch upstream pull/"$2"/head:"$1"-pr"$2"
+	git checkout "$1"-pr"$2"
+}
 gpr() {
 	git fetch upstream pull/"$2"/head:"$1"-pr"$2"
 	git checkout "$1"-pr"$2"
