@@ -148,5 +148,5 @@ export MAKEFLAGS=-j8  # Using 8 parallel jobs
 
 # Secure info replicated elsewhere
 if [ "$(uname 2> /dev/null)" != "Linux" ]; then
-	source $HOME/secure.sh
+	source $HOME/Documents/secure.sh
 fi
