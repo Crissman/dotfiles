@@ -97,7 +97,7 @@ alias gvl='cdc;vim $(glast)'
 
 alias cl='clear'
 alias cr='clear; fc -e : -1'
-alias config='/usr/local/bin/git --git-dir=/Users/crissman/.cfg/ --work-tree=/Users/crissman'
+alias config='git --git-dir=/Users/crissman/.cfg/ --work-tree=/Users/crissman'
 alias conup='cd;config commit -am "`date`";config pull origin master; config push origin master;cd -;source ~/.fzf.zsh; source ~/.zshrc'
 alias pi='pip install -U'
 alias mmv='noglob zmv -W'
