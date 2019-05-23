@@ -104,6 +104,7 @@ alias mmv='noglob zmv -W'
 alias cpu='top -F -R -o cpu'
 alias ex='exit'
 alias grum='git rebase upstream/master'
+alias pip='pip3'
 
 cdc() {
 	if [ -e ~/Documents/Github/Chainer/ ]; then
