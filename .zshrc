@@ -106,6 +106,7 @@ alias ex='exit'
 alias grum='git rebase upstream/master'
 alias pip='pip3'
 
+# Change to the github Chainer directory
 cdc() {
 	if [ -e ~/Documents/Github/Chainer/ ]; then
 		cd ~/Documents/Github/Chainer
@@ -115,6 +116,8 @@ cdc() {
 		echo "Chainer directory not found!" >&2
 	fi
 }
+
+# Automated creation of new branch for function tests, test, and compare to master test
 ct() {
 	export CWD=$PWD
 	cdc
@@ -125,6 +128,8 @@ ct() {
 	pytest -m "not slow and not gpu and not cudnn and not ideep" $(ag -g "$1".py)
 	cd $CWD
 }
+
+# Create a git branch for a pull request
 gpr() {
 	git fetch upstream pull/"$2"/head:"$1"-pr"$2"
 	git checkout "$1"-pr"$2"
