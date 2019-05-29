@@ -151,6 +151,7 @@ fe() {
 export PATH=/users/Crissman/anaconda3/bin:$PATH
 export CHAINER_BUILD_CHAINERX=1
 export MAKEFLAGS=-j8  # Using 8 parallel jobs
+export MALMO_XSD_PATH=/Users/Crissman/Documents/Github/MalmoPlatform/Schemas
 
 # Secure info replicated elsewhere
 if [ "$(uname 2> /dev/null)" != "Linux" ]; then
