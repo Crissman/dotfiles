@@ -129,6 +129,14 @@ ct() {
 	cd $CWD
 }
 
+bp() {
+	export CWD=$PWD
+	cdg
+	cd backport
+	python backport.py --repo "$1" --token $GTOK --pr "$2"
+	cd $CWD
+}
+
 # Create a git branch for a pull request
 gpr() {
 	git fetch upstream pull/"$2"/head:"$1"-pr"$2"
