@@ -139,6 +139,7 @@ bp() {
 
 # Create a git branch for a pull request
 gpr() {
+	gcm
 	git fetch upstream pull/"$2"/head:"$1"-pr"$2"
 	git checkout "$1"-pr"$2"
 }
