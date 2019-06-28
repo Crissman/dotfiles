@@ -105,6 +105,7 @@ alias cpu='top -F -R -o cpu'
 alias ex='exit'
 alias grum='git rebase upstream/master'
 alias pip='pip3'
+alias sm='ssh m102'
 
 # Change to the github Chainer directory
 cdc() {
