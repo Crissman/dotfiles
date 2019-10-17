@@ -119,7 +119,7 @@ cdc() {
 }
 
 # Change to the github Optuna directory
-cdc() {
+cdo() {
 	if [ -e ~/Documents/Github/Optuna/ ]; then
 		cd ~/Documents/Github/Optuna
 	elif [ -e ~/optuna/ ]; then
