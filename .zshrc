@@ -118,6 +118,17 @@ cdc() {
 	fi
 }
 
+# Change to the github Optuna directory
+cdc() {
+	if [ -e ~/Documents/Github/Optuna/ ]; then
+		cd ~/Documents/Github/Optuna
+	elif [ -e ~/optuna/ ]; then
+		cd ~/optuna
+	else
+		echo "Optuna directory not found!" >&2
+	fi
+}
+
 # Automated creation of new branch for function tests, test, and compare to master test
 ct() {
 	export CWD=$PWD
