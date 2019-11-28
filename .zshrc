@@ -127,6 +127,8 @@ cdo() {
 	else
 		echo "Optuna directory not found!" >&2
 	fi
+	gcm
+	glum
 }
 
 # Automated creation of new branch for function tests, test, and compare to master test
