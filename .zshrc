@@ -110,8 +110,8 @@ alias nnh='history | cut -c 8-'
 
 # Change to the github Chainer directory
 cdc() {
-	if [ -e ~/Documents/Github/Chainer/ ]; then
-		cd /Users/Crissman/GDrive/Github/Chainer
+	if [ -e /Users/Crissman/GDrive/Github/chainer/ ]; then
+		cd /Users/Crissman/GDrive/Github/chainer
 	elif [ -e ~/chainer/ ]; then
 		cd ~/chainer
 	else
@@ -121,7 +121,7 @@ cdc() {
 
 # Change to the github Optuna directory
 cdo() {
-	if [ -e ~/Documents/Github/Optuna/ ]; then
+	if [ -e /Users/Crissman/GDrive/Github/Optuna/ ]; then
 		cd /Users/Crissman/GDrive/Github/Optuna
 	elif [ -e ~/optuna/ ]; then
 		cd ~/optuna
