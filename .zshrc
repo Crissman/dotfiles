@@ -181,5 +181,5 @@ export MALMO_XSD_PATH=/Users/Crissman/Documents/Github/MalmoPlatform/Schemas
 
 # Secure info replicated elsewhere
 if [ "$(uname 2> /dev/null)" != "Linux" ]; then
-	source $HOME/Documents/secure.sh
+	source $HOME/GDrive/secure.sh
 fi
