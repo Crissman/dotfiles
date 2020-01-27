@@ -84,7 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias cdg='cd ~/Documents/Github'
+alias cdg='cd /Users/Crissman/GDrive/Github'
 alias alg='alias | grep'
 alias scr='vim ~/Documents/scratch.txt'
 alias zrc='vim ~/.zshrc; conup'
@@ -111,7 +111,7 @@ alias nnh='history | cut -c 8-'
 # Change to the github Chainer directory
 cdc() {
 	if [ -e ~/Documents/Github/Chainer/ ]; then
-		cd /User/Crissman/GDrive/Github/Chainer
+		cd /Users/Crissman/GDrive/Github/Chainer
 	elif [ -e ~/chainer/ ]; then
 		cd ~/chainer
 	else
@@ -122,7 +122,7 @@ cdc() {
 # Change to the github Optuna directory
 cdo() {
 	if [ -e ~/Documents/Github/Optuna/ ]; then
-		cd /User/Crissman/GDrive/Github/Optuna
+		cd /Users/Crissman/GDrive/Github/Optuna
 	elif [ -e ~/optuna/ ]; then
 		cd ~/optuna
 	else
