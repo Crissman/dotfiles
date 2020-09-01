@@ -113,3 +113,6 @@ inoremap <right> <nop>
 au FocusLost * :wa  " Save on loss of focus
 
 autocmd FileType python normal zR
+
+set pythonthreedll=/users/Crissman/anaconda3/bin/python
+set pythonthreehome=/users/Crissman/anaconda3/bin/
