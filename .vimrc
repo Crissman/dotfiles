@@ -62,14 +62,14 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
-" Plugin 'klen/python-mode', { 'branch': 'develop' }
+Plugin 'klen/python-mode', { 'branch': 'develop' }
 " Plugin 'tmhedberg/simpylfold'
 
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-let g:pymode_python = 'python3'  " To avoid run errors with lint. https://github.com/python-mode/python-mode/issues/908
+" temp let g:pymode_python = 'python3'  " To avoid run errors with lint. https://github.com/python-mode/python-mode/issues/908
 
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
