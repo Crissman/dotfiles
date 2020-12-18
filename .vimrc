@@ -62,7 +62,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
-Plugin 'klen/python-mode', { 'branch': 'develop' }
+" Plugin 'klen/python-mode', { 'branch': 'develop' }
 " Plugin 'tmhedberg/simpylfold'
 
 
