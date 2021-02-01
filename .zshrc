@@ -123,8 +123,10 @@ cdc() {
 cdo() {
 	if [ -e /Users/Crissman/GDrive/Github/Optuna/ ]; then
 		cd /Users/Crissman/GDrive/Github/Optuna
+		gst
 	elif [ -e ~/optuna/ ]; then
 		cd ~/optuna
+		gst
 	else
 		echo "Optuna directory not found!" >&2
 	fi
