@@ -99,7 +99,7 @@ alias cl='clear'
 alias cr='clear; fc -e : -1'
 alias config='git --git-dir=/Users/crissman/.cfg/ --work-tree=/Users/crissman'
 alias conup='cd;config commit -am "`date`";config pull origin master; config push origin master;cd -;source ~/.fzf.zsh; source ~/.zshrc'
-alias pi='pip install --upgrade pip; pip install -U'
+alias pi='pip install --upgrade pip > /dev/null; pip install -U'
 alias mmv='noglob zmv -W'
 alias cpu='top -F -R -o cpu'
 alias ex='exit'
@@ -107,6 +107,7 @@ alias grum='git rebase upstream/master'
 alias pip='pip3'
 alias sm='ssh m102'
 alias nnh='history | cut -c 8-'
+alias gbD='gbd -D'
 
 # Change to the github Chainer directory
 cdc() {
@@ -123,8 +124,10 @@ cdc() {
 cdo() {
 	if [ -e /Users/Crissman/GDrive/Github/Optuna/ ]; then
 		cd /Users/Crissman/GDrive/Github/Optuna
+		gst
 	elif [ -e ~/optuna/ ]; then
 		cd ~/optuna
+		gst
 	else
 		echo "Optuna directory not found!" >&2
 	fi
@@ -184,3 +187,11 @@ export PFKUBE_DOCKER_ALLOWED_RUNTIME_UID=2127
 export PFKUBE_MNJ_DEFAULT_DOCKER_REGISTRY=harbor.mnj.pfn.io/user-crissman  # This is used when --target-cluster=mnj
 export PFKUBE_MNJ_DEFAULT_DOCKER_CRED_NAME=pfkube-harbor-cred  # This is used when --target-cluster=mnj
 export PFKUBE_MNJ_DEFAULT_GIT_SECRET_NAME=pfkube-git-secret  # This is used when --target-cluster=mnj
+
+# zsh completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
