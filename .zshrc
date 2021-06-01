@@ -108,7 +108,6 @@ alias pip='pip3'
 alias sm='ssh m102'
 alias nnh='history | cut -c 8-'
 alias gbD='gbd -D'
-alias test='isort .; black .; blackdoc .; flake8 .'
 
 # Change to the github Chainer directory
 cdc() {
