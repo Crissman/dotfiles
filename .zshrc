@@ -197,3 +197,8 @@ if type brew &>/dev/null; then
   autoload -Uz compinit
   compinit
 fi
+alias kubectl="pf kubectl"
+alias pfkube="pf pfkube"
+alias pftaskqueue="pf pftaskqueue"
+alias git-ghost="pf git-ghost"
+alias pfbuild="pf pfbuild"
