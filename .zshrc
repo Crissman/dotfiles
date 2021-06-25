@@ -108,6 +108,7 @@ alias pip='pip3'
 alias sm='ssh m102'
 alias nnh='history | cut -c 8-'
 alias gbD='gbd -D'
+alias gcob='gco -b'
 
 # Change to the github Chainer directory
 cdc() {
@@ -154,11 +155,12 @@ bp() {
 }
 
 # Create a git branch for a pull request
-gpr() {
+function gpr {
 	gcm
 	git fetch upstream pull/"$2"/head:"$1"-pr"$2"
 	git checkout "$1"-pr"$2"
 }
+
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
@@ -195,3 +197,8 @@ if type brew &>/dev/null; then
   autoload -Uz compinit
   compinit
 fi
+alias kubectl="pf kubectl"
+alias pfkube="pf pfkube"
+alias pftaskqueue="pf pftaskqueue"
+alias git-ghost="pf git-ghost"
+alias pfbuild="pf pfbuild"
